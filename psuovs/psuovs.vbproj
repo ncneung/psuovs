@@ -397,6 +397,8 @@
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="App_Start\Startup.Auth.vb" />
+    <Compile Include="BLLs\Interfaces\IElectionManagement.vb" />
+    <Compile Include="BLLs\Interfaces\IVoterManagement.vb" />
     <Compile Include="Contact.aspx.designer.vb">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
@@ -414,7 +416,9 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ElectionDataModels.vb" />
     <Compile Include="Models\IdentityModels.vb" />
+    <Compile Include="Models\VoterDataModels.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
