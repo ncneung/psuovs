@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Log in" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Login.aspx.vb" Inherits="psuovs.Login" Async="true" %>
+﻿<%@ Page Title="Log in" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Login.aspx.vb" Inherits="PSUOVS.Login" Async="true" %>
 
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
@@ -11,20 +11,20 @@
                 <div class="form-horizontal">
                     <h4>Use a local account to log in.</h4>
                     <hr />
-                      <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+                    <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                         <p class="text-danger">
                             <asp:Literal runat="server" ID="FailureText" />
                         </p>
                     </asp:PlaceHolder>
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Email</asp:Label>
+                    <div class="control-group">
+                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">User name</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                                CssClass="text-danger" ErrorMessage="The email field is required." />
+                            <asp:TextBox runat="server" ID="UserName" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
+                                CssClass="text-danger" ErrorMessage="The user name field is required." />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="control-group">
                         <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
                         <div class="col-md-10">
                             <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
@@ -46,19 +46,15 @@
                     </div>
                 </div>
                 <p>
-                    <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register as a new user</asp:HyperLink>
-                </p>
-                <p>
-                    <%-- Enable this once you have account confirmation enabled for password reset functionality
-                    <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
-                    --%>
+                    <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register</asp:HyperLink>
+                    if you don't have a local account.
                 </p>
             </section>
         </div>
 
         <div class="col-md-4">
             <section id="socialLoginForm">
-                <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
+                <uc:openauthproviders runat="server" id="OpenAuthLogin" />
             </section>
         </div>
     </div>

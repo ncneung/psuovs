@@ -27,7 +27,6 @@ Public Class BundleConfig
         ' ready for production, use the build tool at http://modernizr.com to pick only the tests you need
         bundles.Add(New ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"))
-
         ScriptManager.ScriptResourceMapping.AddDefinition("respond", New ScriptResourceDefinition() With {
                 .Path = "~/Scripts/respond.min.js",
                 .DebugPath = "~/Scripts/respond.js"})

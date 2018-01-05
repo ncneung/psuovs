@@ -1,4 +1,4 @@
-﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="OpenAuthProviders.ascx.vb" Inherits="psuovs.OpenAuthProviders" %>
+﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="OpenAuthProviders.ascx.vb" Inherits="PSUOVS.OpenAuthProviders" %>
 
 <div id="socialLoginList">
     <h4>Use another service to log in.</h4>

@@ -1,10 +1,10 @@
-﻿Imports System
+﻿Imports Microsoft.Owin.Security
+Imports System
 Imports System.Collections.Generic
 Imports System.Globalization
 Imports System.Linq
 Imports System.Web
 Imports Microsoft.AspNet.Identity
-Imports Microsoft.Owin.Security
 
 Partial Public Class OpenAuthProviders
     Inherits System.Web.UI.UserControl

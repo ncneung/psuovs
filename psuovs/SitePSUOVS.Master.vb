@@ -1,4 +1,4 @@
-﻿Public Class SiteMaster
+﻿Public Class SiteSAMS
     Inherits MasterPage
     Private Const AntiXsrfTokenKey As String = "__AntiXsrfToken"
     Private Const AntiXsrfUserNameKey As String = "__AntiXsrfUserName"
@@ -37,14 +37,18 @@
             ViewState(AntiXsrfUserNameKey) = If(Context.User.Identity.Name, [String].Empty)
         Else
             ' Validate the Anti-XSRF token
-            If DirectCast(ViewState(AntiXsrfTokenKey), String) <> _antiXsrfTokenValue OrElse DirectCast(ViewState(AntiXsrfUserNameKey), String) <> (If(Context.User.Identity.Name, [String].Empty)) Then
-                Throw New InvalidOperationException("Validation of Anti-XSRF token failed.")
-            End If
+
+            'If DirectCast(ViewState(AntiXsrfTokenKey), String) <> _antiXsrfTokenValue OrElse DirectCast(ViewState(AntiXsrfUserNameKey), String) <> (If(Context.User.Identity.Name, [String].Empty)) Then
+            '    Throw New InvalidOperationException("Validation of Anti-XSRF token failed.")
+            'End If
+
         End If
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        'If Session("userName") = "" Then
+        '    Response.Redirect("~/Login_Main.aspx")
+        'End If
     End Sub
 
     Protected Sub Unnamed_LoggingOut(sender As Object, e As LoginCancelEventArgs)

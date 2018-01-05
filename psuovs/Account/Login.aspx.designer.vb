@@ -32,13 +32,13 @@ Partial Public Class Login
     Protected WithEvents FailureText As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
-    '''Email control.
+    '''UserName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Email As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents UserName As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Password control.
@@ -74,5 +74,5 @@ Partial Public Class Login
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents OpenAuthLogin As Global.psuovs.OpenAuthProviders
+    Protected WithEvents OpenAuthLogin As Global.PSUOVS.OpenAuthProviders
 End Class

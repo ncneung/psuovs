@@ -1,11 +1,10 @@
-﻿Imports System
-Imports System.Security.Claims
-Imports System.Web
-Imports Microsoft.AspNet.Identity
+﻿Imports Microsoft.AspNet.Identity
 Imports Microsoft.AspNet.Identity.EntityFramework
 Imports Microsoft.AspNet.Identity.Owin
+Imports System
+Imports System.Security.Claims
+Imports System.Web
 Imports Microsoft.Owin.Security
-Imports Owin
 
 Partial Public Class RegisterExternalLogin
     Inherits System.Web.UI.Page
@@ -27,35 +26,27 @@ Partial Public Class RegisterExternalLogin
         End Set
     End Property
 
-    Private Sub RedirectOnFail()
-        Response.Redirect(If((User.Identity.IsAuthenticated), "~/Account/Manage", "~/Account/Login"))
-    End Sub
-
     Protected Sub Page_Load() Handles Me.Load
         ' Process the result from an auth provider in the request
         ProviderName = IdentityHelper.GetProviderNameFromRequest(Request)
         If [String].IsNullOrEmpty(ProviderName) Then
-            RedirectOnFail()
-            Return
+            Response.Redirect("~/Account/Login")
         End If
 
         If Not IsPostBack Then
-            Dim manager = Context.GetOwinContext().GetUserManager(Of ApplicationUserManager)()
-            Dim signInManager = Context.GetOwinContext().Get(Of ApplicationSignInManager)()
+            Dim manager = New UserManager()
             Dim loginInfo = Context.GetOwinContext().Authentication.GetExternalLoginInfo()
             If loginInfo Is Nothing Then
-                RedirectOnFail()
-                Return
+                Response.Redirect("~/Account/Login")
             End If
             Dim appuser = manager.Find(loginInfo.Login)
             If appuser IsNot Nothing Then
-                signInManager.SignIn(appuser, isPersistent := False, rememberBrowser := False)
+                IdentityHelper.SignIn(manager, appuser, isPersistent:=False)
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString("ReturnUrl"), Response)
             ElseIf User.Identity.IsAuthenticated Then
                 Dim verifiedloginInfo = Context.GetOwinContext().Authentication.GetExternalLoginInfo(IdentityHelper.XsrfKey, User.Identity.GetUserId())
                 If verifiedloginInfo Is Nothing Then
-                    RedirectOnFail()
-                    Return
+                    Response.Redirect("~/Account/Login")
                 End If
 
                 Dim result = manager.AddLogin(User.Identity.GetUserId(), verifiedloginInfo.Login)
@@ -66,7 +57,7 @@ Partial Public Class RegisterExternalLogin
                     Return
                 End If
             Else
-                email.Text = loginInfo.Email
+                userName.Text = loginInfo.DefaultUserName
             End If
         End If
     End Sub
@@ -79,9 +70,8 @@ Partial Public Class RegisterExternalLogin
         If Not IsValid Then
             Return
         End If
-        Dim manager = Context.GetOwinContext().GetUserManager(Of ApplicationUserManager)()
-        Dim signInManager = Context.GetOwinContext().Get(Of ApplicationSignInManager)()
-        Dim user = New ApplicationUser() With {.UserName = email.Text, .Email = email.Text}
+        Dim manager = New UserManager()
+        Dim user = New ApplicationUser() With {.UserName = userName.Text}
         Dim result = manager.Create(user)
         If Not result.Succeeded Then
             AddErrors(result)
@@ -89,7 +79,7 @@ Partial Public Class RegisterExternalLogin
         End If
         Dim loginInfo = Context.GetOwinContext().Authentication.GetExternalLoginInfo()
         If loginInfo Is Nothing Then
-            RedirectOnFail()
+            Response.Redirect("~/Account/Login")
             Return
         End If
         result = manager.AddLogin(user.Id, loginInfo.Login)
@@ -97,12 +87,7 @@ Partial Public Class RegisterExternalLogin
             AddErrors(result)
             Return
         End If
-        signInManager.SignIn(user, isPersistent := False, rememberBrowser := False)
-
-        ' For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-        ' Dim code = manager.GenerateEmailConfirmationToken(user.Id)
-        ' Send this link via email: IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id)
-
+        IdentityHelper.SignIn(manager, user, False)
         IdentityHelper.RedirectToReturnUrl(Request.QueryString("ReturnUrl"), Response)
         Return
     End Sub

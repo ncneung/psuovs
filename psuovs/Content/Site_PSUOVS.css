@@ -1,0 +1,85 @@
+﻿
+.navbar {
+    /*height: 60px;
+    background-color: #3f6fe1;*/
+    background-color: #b32440;
+    
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    /*color: #b6ff00;*/
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #78fd02;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 100px;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding:30px 0 30px 0;
+  /* Set the fixed height of the footer here */
+  height: 100px;
+  background-color: #F0F0F0;
+}
+
+@media (max-width: 990px) {
+  .footer {
+  position: relative;
+  height:auto;
+  background-color: transparent;
+  border-top:solid 1px #F0F0F0;
+  margin-top : 20px;
+}
+}
+
+/*@font-face {
+    font-family: 'THSarabunNew';
+    src: url('thsarabunnew-webfont.eot');
+    src: url('thsarabunnew-webfont.eot?#iefix') format('embedded-opentype'),
+         url('thsarabunnew-webfont.woff') format('woff'),
+         url('thsarabunnew-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('thsarabunnew_bolditalic-webfont.eot');
+    src: url('thsarabunnew_bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('thsarabunnew_bolditalic-webfont.woff') format('woff'),
+         url('thsarabunnew_bolditalic-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('thsarabunnew_italic-webfont.eot');
+    src: url('thsarabunnew_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('thsarabunnew_italic-webfont.woff') format('woff'),
+         url('thsarabunnew_italic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+
+}*/
+
+/*.gv {
+    background: yellow;
+}
+
+.gv a {
+    text-decoration: underline;
+}
+
+.gv a:visited {
+        color: red;
+}*/

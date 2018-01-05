@@ -52,7 +52,14 @@ audio:not([controls]) {
 }
 
 html {
-  font-family: sans-serif;
+  /*font-family: sans-serif;*/
+  font-family: 'THSarabunNew';
+    src: url('thsarabunnew-webfont.eot');
+    src: url('thsarabunnew-webfont.eot?#iefix') format('embedded-opentype'),
+         url('thsarabunnew-webfont.woff') format('woff'),
+         url('thsarabunnew-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
@@ -162,7 +169,7 @@ button,
 input,
 select,
 textarea {
-  margin: 0;
+  margin: 0 0 0 0px;
   font-family: inherit;
   font-size: 100%;
 }
@@ -262,7 +269,7 @@ table {
     max-width: 100% !important;
   }
   @page  {
-    margin: 2cm .5cm;
+    margin: 1cm .5cm;
   }
   p,
   h2,
@@ -275,8 +282,19 @@ table {
     page-break-after: avoid;
   }
   .navbar {
-    display: none;
+      position: relative;          
+    display: none;    
   }
+  /*.footer{
+      display: none;  
+  }*/
+  /*.Body{
+      padding-top: 0px;
+  }*/
+  /*body {
+    padding-top: 0px;
+    padding-bottom: 20px;
+}*/
   .table td,
   .table th {
     background-color: #fff !important;
@@ -311,7 +329,14 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  font-family: 'THSarabunNew';
+    src: url('thsarabunnew-webfont.eot');
+    src: url('thsarabunnew-webfont.eot?#iefix') format('embedded-opentype'),
+         url('thsarabunnew-webfont.woff') format('woff'),
+         url('thsarabunnew-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
@@ -1407,7 +1432,7 @@ pre code {
 table {
   max-width: 100%;
   background-color: transparent;
-}
+    }
 
 th {
   text-align: left;
@@ -2395,9 +2420,16 @@ input[type="button"].btn-block {
 }
 
 @font-face {
-  font-family: 'Glyphicons Halflings';
+  /*font-family: 'Glyphicons Halflings';
   src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');*/
+   font-family: 'THSarabunNew';
+    src: url('thsarabunnew-webfont.eot');
+    src: url('thsarabunnew-webfont.eot?#iefix') format('embedded-opentype'),
+         url('thsarabunnew-webfont.woff') format('woff'),
+         url('thsarabunnew-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 .glyphicon {
@@ -3945,7 +3977,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .nav-justified {
-  width: 100%;
+  width: 51%;
+    height: 50px;
 }
 
 .nav-justified > li {

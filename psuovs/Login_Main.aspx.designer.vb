@@ -11,41 +11,32 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Register
-
+Partial Public Class Login_Main
+    
     '''<summary>
-    '''ErrorMessage control.
+    '''Image1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ErrorMessage As Global.System.Web.UI.WebControls.Literal
-
+    Protected WithEvents Image1 As Global.System.Web.UI.WebControls.Image
+    
     '''<summary>
-    '''UserNameCtrl control.
+    '''Login1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UserNameCtrl As Global.System.Web.UI.WebControls.TextBox
-
+    Protected WithEvents Login1 As Global.System.Web.UI.WebControls.Login
+    
     '''<summary>
-    '''Password control.
+    '''lblErrLogin control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Password As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''ConfirmPassword control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ConfirmPassword As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lblErrLogin As Global.System.Web.UI.WebControls.Label
 End Class

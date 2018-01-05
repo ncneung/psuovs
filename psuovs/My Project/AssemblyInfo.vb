@@ -7,17 +7,17 @@ Imports System.Runtime.InteropServices
 ' associated with an assembly.
 
 ' Review the values of the assembly attributes
-<Assembly: AssemblyTitle("psuovs")>
-<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyTitle("PSUOVS")>
+<Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("psuovs")>
+<Assembly: AssemblyProduct("PSUOVS")>
 <Assembly: AssemblyCopyright("Copyright ©  2017")>
-<Assembly: AssemblyTrademark("")>
+<Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("1cd41b06-e6aa-4ba1-a7dd-510a1327d121")>
+<Assembly: Guid("109449b2-c5a8-423c-a509-332049f2b7f1")> 
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -30,5 +30,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("1.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> 

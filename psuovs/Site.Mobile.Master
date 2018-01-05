@@ -1,4 +1,4 @@
-﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Site.Mobile.master.vb" Inherits="psuovs.Site_Mobile" %>
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Site.Mobile.master.vb" Inherits="PSUOVS.Site_Mobile" %>
 
 <%@ Register Src="~/ViewSwitcher.ascx" TagPrefix="friendlyUrls" TagName="ViewSwitcher" %>
 

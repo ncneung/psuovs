@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.vb" Inherits="psuovs.Global_asax" Language="vb" %>
+﻿<%@ Application Codebehind="Global.asax.vb" Inherits="PSUOVS.Global_asax" Language="vb" %>

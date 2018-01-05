@@ -11,14 +11,14 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class RegisterExternalLogin
+Partial Public Class SiteSAMS
 
     '''<summary>
-    '''userName control.
+    '''MainContent control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents userName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents MainContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
 End Class
