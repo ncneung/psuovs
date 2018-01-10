@@ -10,6 +10,7 @@
         <%--<div class="col-md-12">--%>
         <%--<div class="col-sm-6 col-sm-offset-3 well offset4">--%>
         </br>
+        </br>
         <div class="col-sm-4 col-sm-offset-4 well offset3 form-v-middle">
             <section id="loginForm">
                 <div class="form-horizontal" >
@@ -17,7 +18,8 @@
                     <asp:Image ID="Image1" runat="server" ImageUrl="~/Image/PSUPassport-logo.gif" />
                     <h4 style="color:blue">Use PSUPassport account to log in.</h4>
                     <hr />
-                    <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/Page/TEST.aspx" FailureText="รหัสผ่านไม่ถูกต้อง" >
+                        <%--FailureText="รหัสผ่านไม่ถูกต้อง"--%>
+                    <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/Page/TEST.aspx"  >
                         <LayoutTemplate>
                             <table cellpadding="1" cellspacing="0" style="border-collapse: collapse;">
                                 <tr>
@@ -50,7 +52,7 @@
                                             </tr>
                                             <tr>
                                                 <td align="right" colspan="2">
-                                                    <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="Log In" ValidationGroup="Login1" CssClass="btn btn-default"   />
+                                                    <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="Log In" ValidationGroup="Login1" CssClass="btn btn-default" OnClick="LoginButton_Click"   />
                                                     
                                                 </td>
                                             </tr>
