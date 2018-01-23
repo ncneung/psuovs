@@ -209,6 +209,7 @@
     <Content Include="obj\Debug\psuovs.vbproj.GenerateResource.Cache" />
     <Content Include="obj\Debug\psuovs.vbprojResolveAssemblyReference.cache" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Page\Home.aspx" />
     <Content Include="Page\TEST.aspx" />
     <Content Include="Pic\Microsoft-Excel-icon.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -329,12 +330,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Page\Home.aspx.designer.vb">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\Home.aspx.vb">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Page\TEST.aspx.designer.vb">
       <DependentUpon>TEST.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\TEST.aspx.vb">
       <DependentUpon>TEST.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SitePSUOVS.Master.designer.vb">
       <DependentUpon>SitePSUOVS.Master</DependentUpon>

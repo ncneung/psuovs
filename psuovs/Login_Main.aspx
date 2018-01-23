@@ -19,7 +19,7 @@
                     <h4 style="color:blue">Use PSUPassport account to log in.</h4>
                     <hr />
                         <%--FailureText="รหัสผ่านไม่ถูกต้อง"--%>
-                    <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/Page/TEST.aspx"  >
+                    <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/Page/Home.aspx"  >
                         <LayoutTemplate>
                             <table cellpadding="1" cellspacing="0" style="border-collapse: collapse;">
                                 <tr>

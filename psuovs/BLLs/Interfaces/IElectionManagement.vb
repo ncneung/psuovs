@@ -30,4 +30,15 @@
 #End Region
 
 End Interface
+Public Class CElectionManagement
+    Function Test() As String
+        Return "TEST JA"
+    End Function
+
+    Function CheckRole(ByVal sPSUPassport As String) As String
+
+        Return "TesT"
+    End Function
+End Class
+
 
