@@ -10,8 +10,8 @@ Public Class TEST
 
         'Response.Write(dataLogin.CitizenID)
 
-        Dim sTest As New CElectionManagement
-        Response.Write(sTest.Test)
+        'Dim sTest As New CElectionManagement
+        'Response.Write(sTest.Test)
 
 
     End Sub

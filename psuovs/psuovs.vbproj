@@ -296,6 +296,7 @@
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
+    <Compile Include="BLLs\Code\clsHome.vb" />
     <Compile Include="BLLs\Interfaces\IElectionManagement.vb" />
     <Compile Include="BLLs\Interfaces\IVoterManagement.vb" />
     <Compile Include="Global.asax.vb">
