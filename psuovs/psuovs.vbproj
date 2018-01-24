@@ -296,8 +296,12 @@
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
+    <Compile Include="BLLs\Code\clsConnect.vb" />
     <Compile Include="BLLs\Code\clsHome.vb" />
+    <Compile Include="BLLs\Code\clsRole.vb" />
+    <Compile Include="BLLs\Code\TestClass.vb" />
     <Compile Include="BLLs\Interfaces\IElectionManagement.vb" />
+    <Compile Include="BLLs\Interfaces\TestInterface.vb" />
     <Compile Include="BLLs\Interfaces\IVoterManagement.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
@@ -311,6 +315,7 @@
     </Compile>
     <Compile Include="Models\ElectionDataModels.vb" />
     <Compile Include="Models\IdentityModels.vb" />
+    <Compile Include="Models\testnamespace.vb" />
     <Compile Include="Models\VoterDataModels.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
