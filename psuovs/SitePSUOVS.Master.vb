@@ -1,4 +1,4 @@
-﻿Public Class SiteSAMS
+﻿Public Class SitePSUOVS
     Inherits MasterPage
     Private Const AntiXsrfTokenKey As String = "__AntiXsrfToken"
     Private Const AntiXsrfUserNameKey As String = "__AntiXsrfUserName"
@@ -17,9 +17,9 @@
             _antiXsrfTokenValue = Guid.NewGuid().ToString("N")
             Page.ViewStateUserKey = _antiXsrfTokenValue
 
-            Dim responseCookie = New HttpCookie(AntiXsrfTokenKey) With { _
-                 .HttpOnly = True, _
-                 .Value = _antiXsrfTokenValue _
+            Dim responseCookie = New HttpCookie(AntiXsrfTokenKey) With {
+                 .HttpOnly = True,
+                 .Value = _antiXsrfTokenValue
             }
             If FormsAuthentication.RequireSSL AndAlso Request.IsSecureConnection Then
                 responseCookie.Secure = True
@@ -41,8 +41,36 @@
             'If DirectCast(ViewState(AntiXsrfTokenKey), String) <> _antiXsrfTokenValue OrElse DirectCast(ViewState(AntiXsrfUserNameKey), String) <> (If(Context.User.Identity.Name, [String].Empty)) Then
             '    Throw New InvalidOperationException("Validation of Anti-XSRF token failed.")
             'End If
+            'Dim classVoter As New clsVoter
+            'Dim classRole As New clsRole
+            'Dim strPSUPassport As String = Context.User.Identity.Name
+
+            'If classVoter.checkVoter(strPSUPassport) = True Then
+
+            'Else
+            '    Response.Redirect("Login_Main.aspx")
+
+
+            'End If
+
 
         End If
+        Dim classVoter As New clsVoter
+        Dim classRole As New clsRole
+        Dim strPSUPassport As String = Context.User.Identity.Name
+        If classRole.CheckRole(strPSUPassport, 1) = True Then
+            liCheckStatus.Visible = True
+            liRegistVoter.Visible = True
+
+        ElseIf classRole.CheckRole(strPSUPassport, 2) = True Then
+            liCheckStatus.Visible = True
+            liRegistVoter.Visible = True
+        ElseIf classRole.CheckRole(strPSUPassport, 3) = True Then
+            liCheckStatus.Visible = False
+            liRegistVoter.Visible = True
+
+        End If
+
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load

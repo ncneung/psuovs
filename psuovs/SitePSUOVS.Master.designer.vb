@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class SiteSAMS
+Partial Public Class SitePSUOVS
     
     '''<summary>
     '''Image1 control.
@@ -21,6 +21,24 @@ Partial Public Class SiteSAMS
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Image1 As Global.System.Web.UI.WebControls.Image
+    
+    '''<summary>
+    '''liCheckStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents liCheckStatus As Global.System.Web.UI.HtmlControls.HtmlAnchor
+    
+    '''<summary>
+    '''liRegistVoter control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents liRegistVoter As Global.System.Web.UI.HtmlControls.HtmlAnchor
     
     '''<summary>
     '''MainContent control.

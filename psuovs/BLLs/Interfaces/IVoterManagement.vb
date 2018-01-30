@@ -7,6 +7,7 @@
     'ข้อมูลของผู้มีสิทธิ์เลือกตั้ง ดึงข้อมูลจาก ฐานนักศึกษา หรือ ฐานบุคลากร 
     Function GetVoter(passport As String)
 
+
     'กำหนด ผู้มีสิทธิลงคะแนน กับ บัตรลงคะแนน
     Function AssignVoter(BallotID As String, passport As String, otherInfo As String)
     'เอารายชื่อออกจากบัตรลงคะแนน
@@ -19,6 +20,9 @@
 
     'บันทึกว่า Voter ได้ทำการ ลงคะแนนสียงในบัตรเลือกตั้งแล้ว
     Function SetVoted(BallotID As String, passport As String)
+
+    'หนึ่งเพิ่ม Check ว่ามีรายชื่อมีสิทธิ์ไหม ถ้าไม่มีก็เข้าระบบไม่ได้
+    Function checkVoter(ByVal PSUPassport As String) As Boolean
 
 
 End Interface
