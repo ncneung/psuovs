@@ -3,9 +3,10 @@
     'ข้อมูลที่เก็บใน DB Table>> EligibleVoter(ballotID(key), passport(key), userInfo, registed as bool, registedDateTime as datetime, registedBy as string , voted as bool, votedDateTime as dateTime)
 
     'รายชื่อผู้มีสิทธิ์เลือกตั้งใน รายการเลือกตั้งที่กำหนด
-    Function GetVoters(ElectionID As String) As IEnumerable(Of Models.Voter)
+    Function GetVoters(ElectionID As String) As IEnumerable(Of V_Voter)
     'ข้อมูลของผู้มีสิทธิ์เลือกตั้ง ดึงข้อมูลจาก ฐานนักศึกษา หรือ ฐานบุคลากร 
-    Function GetVoter(passport As String)
+    'Function GetVoter(passport As String) As Models.VoterDetail
+    Function GetVoter(passport As String) As V_Voter
 
 
     'กำหนด ผู้มีสิทธิลงคะแนน กับ บัตรลงคะแนน

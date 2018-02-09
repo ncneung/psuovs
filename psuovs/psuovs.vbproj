@@ -55,6 +55,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -194,6 +196,16 @@
     <Content Include="Image\PSUPassport-logo.gif" />
     <Content Include="library\PSUPKTProvider.dll" />
     <Content Include="Login_Main.aspx" />
+    <Content Include="Models\PSUOVSModels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PSUOVSModels.edmx</DependentUpon>
+      <LastGenOutput>PSUOVSModels.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Models\PSUOVSModels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PSUOVSModels.edmx</DependentUpon>
+      <LastGenOutput>PSUOVSModels.vb</LastGenOutput>
+    </Content>
     <Content Include="obj\Debug\psuovs.dll" />
     <Content Include="obj\Debug\psuovs.pdb" />
     <Content Include="obj\Debug\psuovs.vbproj.FileListAbsolute.txt" />
@@ -208,8 +220,16 @@
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\psuovs.vbproj.GenerateResource.Cache" />
     <Content Include="obj\Debug\psuovs.vbprojResolveAssemblyReference.cache" />
+    <Content Include="Page\RegistedVoter.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
+    </Content>
+    <EntityDeploy Include="Models\PSUOVSModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PSUOVSModels.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\PSUOVSModels.edmx.diagram">
+      <DependentUpon>PSUOVSModels.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Page\Home.aspx" />
@@ -296,11 +316,17 @@
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
+    <Compile Include="BLLs\Code\clsBallots.vb" />
     <Compile Include="BLLs\Code\clsConnect.vb" />
+    <Compile Include="BLLs\Code\clsElection.vb" />
     <Compile Include="BLLs\Code\clsHome.vb" />
+    <Compile Include="BLLs\Code\clsRegisted.vb" />
     <Compile Include="BLLs\Code\clsRole.vb" />
-    <Compile Include="BLLs\Code\clsVoter.vb" />
+    <Compile Include="BLLs\Code\clsVoters.vb" />
+    <Compile Include="BLLs\Code\testna.vb" />
+    <Compile Include="BLLs\Interfaces\IBallotsManagement.vb" />
     <Compile Include="BLLs\Interfaces\IElectionManagement.vb" />
+    <Compile Include="BLLs\Interfaces\IRegistedManagement.vb" />
     <Compile Include="BLLs\Interfaces\IRoleManageMent.vb" />
     <Compile Include="BLLs\Interfaces\IVoterManagement.vb" />
     <Compile Include="Global.asax.vb">
@@ -313,10 +339,71 @@
       <DependentUpon>Login_Main.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Models\Ballots.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Candidate.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ElectionDataModels.vb" />
+    <Compile Include="Models\ElectionStatus.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ElectionVote.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Faculty.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Gender.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.vb" />
+    <Compile Include="Models\ManageRole.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManageRoleStatus.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MatchElectionBallots.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MatchVoterBallots.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PSUOVSModels.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PSUOVSModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PSUOVSModels.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PSUOVSModels.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PSUOVSModels.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RegistedVoter.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Models\RoleDataModels.vb" />
+    <Compile Include="Models\sysdiagrams.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Voter.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\VoterDataModels.vb" />
+    <Compile Include="Models\VoteResult.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_Voter.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -341,6 +428,13 @@
     </Compile>
     <Compile Include="Page\Home.aspx.vb">
       <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Page\RegistedVoter.aspx.designer.vb">
+      <DependentUpon>RegistedVoter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\RegistedVoter.aspx.vb">
+      <DependentUpon>RegistedVoter.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Page\TEST.aspx.designer.vb">
@@ -405,6 +499,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

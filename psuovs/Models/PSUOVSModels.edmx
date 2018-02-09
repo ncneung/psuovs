@@ -1,0 +1,1016 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PSUOVSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ballots">
+          <Key>
+            <PropertyRef Name="BallotsID" />
+          </Key>
+          <Property Name="BallotsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ElectionID" Type="int" Nullable="false" />
+          <Property Name="BallotsNameTH" Type="varchar(max)" />
+          <Property Name="BallotsNameEN" Type="varchar(max)" />
+          <Property Name="BallotsDescriptionTH" Type="varchar(max)" />
+          <Property Name="BallotsDescriptionEN" Type="varchar(max)" />
+          <Property Name="AllowNoChoice" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Candidate">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CandidateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BallotsID" Type="int" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="CandidateNumber" Type="int" />
+          <Property Name="NameTH" Type="varchar(max)" />
+          <Property Name="NameEN" Type="varchar(max)" />
+          <Property Name="FacID" Type="int" />
+          <Property Name="Gender" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="ElectionStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="StatusName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ElectionVote">
+          <Key>
+            <PropertyRef Name="ElectionID" />
+          </Key>
+          <Property Name="ElectionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ElectionNameTH" Type="varchar(max)" />
+          <Property Name="ElectionNameEN" Type="varchar(max)" />
+          <Property Name="ElectionDescriptionTH" Type="varchar(max)" />
+          <Property Name="ElectionDescriptionEN" Type="varchar(max)" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="StatusReport" Type="bit" />
+          <Property Name="DateTimeStart" Type="datetime" />
+          <Property Name="DateTimeClose" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Faculty">
+          <Key>
+            <PropertyRef Name="FacID" />
+          </Key>
+          <Property Name="FacID" Type="int" Nullable="false" />
+          <Property Name="FacName" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="SEX_CODE" />
+          </Key>
+          <Property Name="SEX_CODE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SEX_NAME" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManageRole">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ElectionID" Type="int" Nullable="false" />
+          <Property Name="PSUPassport" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="IsActived" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManageRoleStatus">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PSUOVS.dbo.MatchElectionBallots' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MatchElectionBallots">
+          <Key>
+            <PropertyRef Name="ElectionID" />
+            <PropertyRef Name="BallotsID" />
+          </Key>
+          <Property Name="ElectionID" Type="int" Nullable="false" />
+          <Property Name="BallotsID" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MatchVoterBallots">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PSUPassport" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BallotsID" Type="int" Nullable="false" />
+          <Property Name="ElectionID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Voted" Type="bit" />
+          <Property Name="VotedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RegistedVoter">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PSUPassport" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ElectionID" Type="int" Nullable="false" />
+          <Property Name="Registed" Type="bit" />
+          <Property Name="RegistedDate" Type="datetime" />
+          <Property Name="RegistedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Voter">
+          <Key>
+            <PropertyRef Name="PSUPassport" />
+          </Key>
+          <Property Name="PSUPassport" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VoteResult">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BallotsID" Type="int" Nullable="false" />
+          <Property Name="CandidateID" Type="int" Nullable="false" />
+          <Property Name="Score" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_Voter">
+          <Key>
+            <PropertyRef Name="PSUPassport" />
+          </Key>
+          <Property Name="PSUPassport" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SEX_CODE" Type="nvarchar" MaxLength="1" />
+          <Property Name="FAC_ID" Type="nvarchar" MaxLength="2" />
+          <Property Name="TITLE_ID" Type="nvarchar" MaxLength="2" />
+          <Property Name="STUD_NAME_THAI" Type="nvarchar" MaxLength="25" />
+          <Property Name="STUD_SNAME_THAI" Type="nvarchar" MaxLength="25" />
+          <Property Name="STUD_NAME_ENG" Type="nvarchar" MaxLength="25" />
+          <Property Name="STUD_SNAME_ENG" Type="nvarchar" MaxLength="25" />
+          <Property Name="FAC_NAME_THAI" Type="nvarchar" MaxLength="100" />
+          <Property Name="SEX_NAME" Type="varchar" MaxLength="10" />
+          <Property Name="FAC_NAME_ENG" Type="nvarchar" MaxLength="70" />
+        </EntityType>
+        <Association Name="FK_Ballots_ElectionVote">
+          <End Role="ElectionVote" Type="Self.ElectionVote" Multiplicity="1" />
+          <End Role="Ballots" Type="Self.Ballots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectionVote">
+              <PropertyRef Name="ElectionID" />
+            </Principal>
+            <Dependent Role="Ballots">
+              <PropertyRef Name="ElectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Candidate_Ballots">
+          <End Role="Ballots" Type="Self.Ballots" Multiplicity="1" />
+          <End Role="Candidate" Type="Self.Candidate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ballots">
+              <PropertyRef Name="BallotsID" />
+            </Principal>
+            <Dependent Role="Candidate">
+              <PropertyRef Name="BallotsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ElectionVote_ElectionStatus">
+          <End Role="ElectionStatus" Type="Self.ElectionStatus" Multiplicity="0..1" />
+          <End Role="ElectionVote" Type="Self.ElectionVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectionStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="ElectionVote">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManageRole_ElectionVote">
+          <End Role="ElectionVote" Type="Self.ElectionVote" Multiplicity="1" />
+          <End Role="ManageRole" Type="Self.ManageRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectionVote">
+              <PropertyRef Name="ElectionID" />
+            </Principal>
+            <Dependent Role="ManageRole">
+              <PropertyRef Name="ElectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManageRole_ManageRoleStatus">
+          <End Role="ManageRoleStatus" Type="Self.ManageRoleStatus" Multiplicity="1" />
+          <End Role="ManageRole" Type="Self.ManageRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManageRoleStatus">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="ManageRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchElectionBallots_Ballots">
+          <End Role="Ballots" Type="Self.Ballots" Multiplicity="1" />
+          <End Role="MatchElectionBallots" Type="Self.MatchElectionBallots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ballots">
+              <PropertyRef Name="BallotsID" />
+            </Principal>
+            <Dependent Role="MatchElectionBallots">
+              <PropertyRef Name="BallotsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchElectionBallots_ElectionVote">
+          <End Role="ElectionVote" Type="Self.ElectionVote" Multiplicity="1" />
+          <End Role="MatchElectionBallots" Type="Self.MatchElectionBallots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectionVote">
+              <PropertyRef Name="ElectionID" />
+            </Principal>
+            <Dependent Role="MatchElectionBallots">
+              <PropertyRef Name="ElectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchVoterBallots_Ballots">
+          <End Role="Ballots" Type="Self.Ballots" Multiplicity="1" />
+          <End Role="MatchVoterBallots" Type="Self.MatchVoterBallots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ballots">
+              <PropertyRef Name="BallotsID" />
+            </Principal>
+            <Dependent Role="MatchVoterBallots">
+              <PropertyRef Name="BallotsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchVoterBallots_ElectionVote">
+          <End Role="ElectionVote" Type="Self.ElectionVote" Multiplicity="1" />
+          <End Role="MatchVoterBallots" Type="Self.MatchVoterBallots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectionVote">
+              <PropertyRef Name="ElectionID" />
+            </Principal>
+            <Dependent Role="MatchVoterBallots">
+              <PropertyRef Name="ElectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchVoterBallots_Voter">
+          <End Role="Voter" Type="Self.Voter" Multiplicity="1" />
+          <End Role="MatchVoterBallots" Type="Self.MatchVoterBallots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voter">
+              <PropertyRef Name="PSUPassport" />
+            </Principal>
+            <Dependent Role="MatchVoterBallots">
+              <PropertyRef Name="PSUPassport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistedVoter_ElectionVote">
+          <End Role="ElectionVote" Type="Self.ElectionVote" Multiplicity="1" />
+          <End Role="RegistedVoter" Type="Self.RegistedVoter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectionVote">
+              <PropertyRef Name="ElectionID" />
+            </Principal>
+            <Dependent Role="RegistedVoter">
+              <PropertyRef Name="ElectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VoteResult_Candidate">
+          <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
+          <End Role="VoteResult" Type="Self.VoteResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="CandidateID" />
+            </Principal>
+            <Dependent Role="VoteResult">
+              <PropertyRef Name="CandidateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PSUOVSModelStoreContainer">
+          <EntitySet Name="Ballots" EntityType="Self.Ballots" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Candidate" EntityType="Self.Candidate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ElectionStatus" EntityType="Self.ElectionStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ElectionVote" EntityType="Self.ElectionVote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManageRole" EntityType="Self.ManageRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManageRoleStatus" EntityType="Self.ManageRoleStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MatchVoterBallots" EntityType="Self.MatchVoterBallots" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistedVoter" EntityType="Self.RegistedVoter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voter" EntityType="Self.Voter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VoteResult" EntityType="Self.VoteResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MatchElectionBallots" EntityType="Self.MatchElectionBallots" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MatchElectionBallots].[ElectionID] AS [ElectionID], 
+    [MatchElectionBallots].[BallotsID] AS [BallotsID], 
+    [MatchElectionBallots].[CreateDate] AS [CreateDate], 
+    [MatchElectionBallots].[CreateBy] AS [CreateBy], 
+    [MatchElectionBallots].[ModifiedDate] AS [ModifiedDate], 
+    [MatchElectionBallots].[ModifiedBy] AS [ModifiedBy]
+    FROM [dbo].[MatchElectionBallots] AS [MatchElectionBallots]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_Voter" EntityType="Self.V_Voter" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_Voter].[PSUPassport] AS [PSUPassport], 
+    [V_Voter].[SEX_CODE] AS [SEX_CODE], 
+    [V_Voter].[FAC_ID] AS [FAC_ID], 
+    [V_Voter].[TITLE_ID] AS [TITLE_ID], 
+    [V_Voter].[STUD_NAME_THAI] AS [STUD_NAME_THAI], 
+    [V_Voter].[STUD_SNAME_THAI] AS [STUD_SNAME_THAI], 
+    [V_Voter].[STUD_NAME_ENG] AS [STUD_NAME_ENG], 
+    [V_Voter].[STUD_SNAME_ENG] AS [STUD_SNAME_ENG], 
+    [V_Voter].[FAC_NAME_THAI] AS [FAC_NAME_THAI], 
+    [V_Voter].[SEX_NAME] AS [SEX_NAME], 
+    [V_Voter].[FAC_NAME_ENG] AS [FAC_NAME_ENG]
+    FROM [dbo].[V_Voter] AS [V_Voter]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Ballots_ElectionVote" Association="Self.FK_Ballots_ElectionVote">
+            <End Role="ElectionVote" EntitySet="ElectionVote" />
+            <End Role="Ballots" EntitySet="Ballots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Candidate_Ballots" Association="Self.FK_Candidate_Ballots">
+            <End Role="Ballots" EntitySet="Ballots" />
+            <End Role="Candidate" EntitySet="Candidate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ElectionVote_ElectionStatus" Association="Self.FK_ElectionVote_ElectionStatus">
+            <End Role="ElectionStatus" EntitySet="ElectionStatus" />
+            <End Role="ElectionVote" EntitySet="ElectionVote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManageRole_ElectionVote" Association="Self.FK_ManageRole_ElectionVote">
+            <End Role="ElectionVote" EntitySet="ElectionVote" />
+            <End Role="ManageRole" EntitySet="ManageRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManageRole_ManageRoleStatus" Association="Self.FK_ManageRole_ManageRoleStatus">
+            <End Role="ManageRoleStatus" EntitySet="ManageRoleStatus" />
+            <End Role="ManageRole" EntitySet="ManageRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchElectionBallots_Ballots" Association="Self.FK_MatchElectionBallots_Ballots">
+            <End Role="Ballots" EntitySet="Ballots" />
+            <End Role="MatchElectionBallots" EntitySet="MatchElectionBallots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchElectionBallots_ElectionVote" Association="Self.FK_MatchElectionBallots_ElectionVote">
+            <End Role="ElectionVote" EntitySet="ElectionVote" />
+            <End Role="MatchElectionBallots" EntitySet="MatchElectionBallots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchVoterBallots_Ballots" Association="Self.FK_MatchVoterBallots_Ballots">
+            <End Role="Ballots" EntitySet="Ballots" />
+            <End Role="MatchVoterBallots" EntitySet="MatchVoterBallots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchVoterBallots_ElectionVote" Association="Self.FK_MatchVoterBallots_ElectionVote">
+            <End Role="ElectionVote" EntitySet="ElectionVote" />
+            <End Role="MatchVoterBallots" EntitySet="MatchVoterBallots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchVoterBallots_Voter" Association="Self.FK_MatchVoterBallots_Voter">
+            <End Role="Voter" EntitySet="Voter" />
+            <End Role="MatchVoterBallots" EntitySet="MatchVoterBallots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistedVoter_ElectionVote" Association="Self.FK_RegistedVoter_ElectionVote">
+            <End Role="ElectionVote" EntitySet="ElectionVote" />
+            <End Role="RegistedVoter" EntitySet="RegistedVoter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VoteResult_Candidate" Association="Self.FK_VoteResult_Candidate">
+            <End Role="Candidate" EntitySet="Candidate" />
+            <End Role="VoteResult" EntitySet="VoteResult" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PSUOVSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ballots">
+          <Key>
+            <PropertyRef Name="BallotsID" />
+          </Key>
+          <Property Name="BallotsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ElectionID" Type="Int32" Nullable="false" />
+          <Property Name="BallotsNameTH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BallotsNameEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BallotsDescriptionTH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BallotsDescriptionEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AllowNoChoice" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ElectionVote" Relationship="Self.FK_Ballots_ElectionVote" FromRole="Ballots" ToRole="ElectionVote" />
+          <NavigationProperty Name="Candidate" Relationship="Self.FK_Candidate_Ballots" FromRole="Ballots" ToRole="Candidate" />
+          <NavigationProperty Name="MatchElectionBallots" Relationship="Self.FK_MatchElectionBallots_Ballots" FromRole="Ballots" ToRole="MatchElectionBallots" />
+          <NavigationProperty Name="MatchVoterBallots" Relationship="Self.FK_MatchVoterBallots_Ballots" FromRole="Ballots" ToRole="MatchVoterBallots" />
+        </EntityType>
+        <EntityType Name="Candidate">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CandidateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BallotsID" Type="Int32" Nullable="false" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="CandidateNumber" Type="Int32" />
+          <Property Name="NameTH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NameEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FacID" Type="Int32" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ballots" Relationship="Self.FK_Candidate_Ballots" FromRole="Candidate" ToRole="Ballots" />
+          <NavigationProperty Name="VoteResult" Relationship="Self.FK_VoteResult_Candidate" FromRole="Candidate" ToRole="VoteResult" />
+        </EntityType>
+        <EntityType Name="ElectionStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ElectionVote" Relationship="Self.FK_ElectionVote_ElectionStatus" FromRole="ElectionStatus" ToRole="ElectionVote" />
+        </EntityType>
+        <EntityType Name="ElectionVote">
+          <Key>
+            <PropertyRef Name="ElectionID" />
+          </Key>
+          <Property Name="ElectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ElectionNameTH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ElectionNameEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ElectionDescriptionTH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ElectionDescriptionEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="StatusReport" Type="Boolean" />
+          <Property Name="DateTimeStart" Type="DateTime" Precision="3" />
+          <Property Name="DateTimeClose" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ballots" Relationship="Self.FK_Ballots_ElectionVote" FromRole="ElectionVote" ToRole="Ballots" />
+          <NavigationProperty Name="ElectionStatus" Relationship="Self.FK_ElectionVote_ElectionStatus" FromRole="ElectionVote" ToRole="ElectionStatus" />
+          <NavigationProperty Name="ManageRole" Relationship="Self.FK_ManageRole_ElectionVote" FromRole="ElectionVote" ToRole="ManageRole" />
+          <NavigationProperty Name="MatchElectionBallots" Relationship="Self.FK_MatchElectionBallots_ElectionVote" FromRole="ElectionVote" ToRole="MatchElectionBallots" />
+          <NavigationProperty Name="RegistedVoter" Relationship="Self.FK_RegistedVoter_ElectionVote" FromRole="ElectionVote" ToRole="RegistedVoter" />
+          <NavigationProperty Name="MatchVoterBallots" Relationship="PSUOVSModel.FK_MatchVoterBallots_ElectionVote" FromRole="ElectionVote" ToRole="MatchVoterBallots" />
+        </EntityType>
+        <EntityType Name="Faculty">
+          <Key>
+            <PropertyRef Name="FacID" />
+          </Key>
+          <Property Name="FacID" Type="Int32" Nullable="false" />
+          <Property Name="FacName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="SEX_CODE" />
+          </Key>
+          <Property Name="SEX_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SEX_NAME" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManageRole">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ElectionID" Type="Int32" Nullable="false" />
+          <Property Name="PSUPassport" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="IsActived" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ElectionVote" Relationship="Self.FK_ManageRole_ElectionVote" FromRole="ManageRole" ToRole="ElectionVote" />
+          <NavigationProperty Name="ManageRoleStatus" Relationship="Self.FK_ManageRole_ManageRoleStatus" FromRole="ManageRole" ToRole="ManageRoleStatus" />
+        </EntityType>
+        <EntityType Name="ManageRoleStatus">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ManageRole" Relationship="Self.FK_ManageRole_ManageRoleStatus" FromRole="ManageRoleStatus" ToRole="ManageRole" />
+        </EntityType>
+        <EntityType Name="MatchVoterBallots">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PSUPassport" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BallotsID" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Voted" Type="Boolean" />
+          <Property Name="VotedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ballots" Relationship="Self.FK_MatchVoterBallots_Ballots" FromRole="MatchVoterBallots" ToRole="Ballots" />
+          <NavigationProperty Name="Voter" Relationship="Self.FK_MatchVoterBallots_Voter" FromRole="MatchVoterBallots" ToRole="Voter" />
+          <Property Name="ElectionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ElectionVote" Relationship="PSUOVSModel.FK_MatchVoterBallots_ElectionVote" FromRole="MatchVoterBallots" ToRole="ElectionVote" />
+        </EntityType>
+        <EntityType Name="RegistedVoter">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PSUPassport" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ElectionID" Type="Int32" Nullable="false" />
+          <Property Name="Registed" Type="Boolean" />
+          <Property Name="RegistedDate" Type="DateTime" Precision="3" />
+          <Property Name="RegistedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ElectionVote" Relationship="Self.FK_RegistedVoter_ElectionVote" FromRole="RegistedVoter" ToRole="ElectionVote" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Voter">
+          <Key>
+            <PropertyRef Name="PSUPassport" />
+          </Key>
+          <Property Name="PSUPassport" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MatchVoterBallots" Relationship="Self.FK_MatchVoterBallots_Voter" FromRole="Voter" ToRole="MatchVoterBallots" />
+        </EntityType>
+        <EntityType Name="VoteResult">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BallotsID" Type="Int32" Nullable="false" />
+          <Property Name="CandidateID" Type="Int32" Nullable="false" />
+          <Property Name="Score" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Candidate" Relationship="Self.FK_VoteResult_Candidate" FromRole="VoteResult" ToRole="Candidate" />
+        </EntityType>
+        <EntityType Name="MatchElectionBallots">
+          <Key>
+            <PropertyRef Name="ElectionID" />
+            <PropertyRef Name="BallotsID" />
+          </Key>
+          <Property Name="ElectionID" Type="Int32" Nullable="false" />
+          <Property Name="BallotsID" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ballots" Relationship="Self.FK_MatchElectionBallots_Ballots" FromRole="MatchElectionBallots" ToRole="Ballots" />
+          <NavigationProperty Name="ElectionVote" Relationship="Self.FK_MatchElectionBallots_ElectionVote" FromRole="MatchElectionBallots" ToRole="ElectionVote" />
+        </EntityType>
+        <EntityType Name="V_Voter">
+          <Key>
+            <PropertyRef Name="PSUPassport" />
+          </Key>
+          <Property Name="PSUPassport" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SEX_CODE" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="FAC_ID" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="TITLE_ID" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="STUD_NAME_THAI" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="STUD_SNAME_THAI" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="STUD_NAME_ENG" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="STUD_SNAME_ENG" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="FAC_NAME_THAI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SEX_NAME" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FAC_NAME_ENG" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Ballots_ElectionVote">
+          <End Role="ElectionVote" Type="Self.ElectionVote" Multiplicity="1" />
+          <End Role="Ballots" Type="Self.Ballots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectionVote">
+              <PropertyRef Name="ElectionID" />
+            </Principal>
+            <Dependent Role="Ballots">
+              <PropertyRef Name="ElectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Candidate_Ballots">
+          <End Role="Ballots" Type="Self.Ballots" Multiplicity="1" />
+          <End Role="Candidate" Type="Self.Candidate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ballots">
+              <PropertyRef Name="BallotsID" />
+            </Principal>
+            <Dependent Role="Candidate">
+              <PropertyRef Name="BallotsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchElectionBallots_Ballots">
+          <End Role="Ballots" Type="Self.Ballots" Multiplicity="1" />
+          <End Role="MatchElectionBallots" Type="Self.MatchElectionBallots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ballots">
+              <PropertyRef Name="BallotsID" />
+            </Principal>
+            <Dependent Role="MatchElectionBallots">
+              <PropertyRef Name="BallotsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchVoterBallots_Ballots">
+          <End Role="Ballots" Type="Self.Ballots" Multiplicity="1" />
+          <End Role="MatchVoterBallots" Type="Self.MatchVoterBallots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ballots">
+              <PropertyRef Name="BallotsID" />
+            </Principal>
+            <Dependent Role="MatchVoterBallots">
+              <PropertyRef Name="BallotsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VoteResult_Candidate">
+          <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
+          <End Role="VoteResult" Type="Self.VoteResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="CandidateID" />
+            </Principal>
+            <Dependent Role="VoteResult">
+              <PropertyRef Name="CandidateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ElectionVote_ElectionStatus">
+          <End Role="ElectionStatus" Type="Self.ElectionStatus" Multiplicity="0..1" />
+          <End Role="ElectionVote" Type="Self.ElectionVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectionStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="ElectionVote">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManageRole_ElectionVote">
+          <End Role="ElectionVote" Type="Self.ElectionVote" Multiplicity="1" />
+          <End Role="ManageRole" Type="Self.ManageRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectionVote">
+              <PropertyRef Name="ElectionID" />
+            </Principal>
+            <Dependent Role="ManageRole">
+              <PropertyRef Name="ElectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchElectionBallots_ElectionVote">
+          <End Role="ElectionVote" Type="Self.ElectionVote" Multiplicity="1" />
+          <End Role="MatchElectionBallots" Type="Self.MatchElectionBallots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectionVote">
+              <PropertyRef Name="ElectionID" />
+            </Principal>
+            <Dependent Role="MatchElectionBallots">
+              <PropertyRef Name="ElectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistedVoter_ElectionVote">
+          <End Role="ElectionVote" Type="Self.ElectionVote" Multiplicity="1" />
+          <End Role="RegistedVoter" Type="Self.RegistedVoter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectionVote">
+              <PropertyRef Name="ElectionID" />
+            </Principal>
+            <Dependent Role="RegistedVoter">
+              <PropertyRef Name="ElectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManageRole_ManageRoleStatus">
+          <End Role="ManageRoleStatus" Type="Self.ManageRoleStatus" Multiplicity="1" />
+          <End Role="ManageRole" Type="Self.ManageRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManageRoleStatus">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="ManageRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchVoterBallots_Voter">
+          <End Role="Voter" Type="Self.Voter" Multiplicity="1" />
+          <End Role="MatchVoterBallots" Type="Self.MatchVoterBallots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voter">
+              <PropertyRef Name="PSUPassport" />
+            </Principal>
+            <Dependent Role="MatchVoterBallots">
+              <PropertyRef Name="PSUPassport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PSUOVSEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ballots" EntityType="Self.Ballots" />
+          <EntitySet Name="Candidate" EntityType="Self.Candidate" />
+          <EntitySet Name="ElectionStatus" EntityType="Self.ElectionStatus" />
+          <EntitySet Name="ElectionVote" EntityType="Self.ElectionVote" />
+          <EntitySet Name="Faculty" EntityType="Self.Faculty" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="ManageRole" EntityType="Self.ManageRole" />
+          <EntitySet Name="ManageRoleStatus" EntityType="Self.ManageRoleStatus" />
+          <EntitySet Name="MatchVoterBallots" EntityType="Self.MatchVoterBallots" />
+          <EntitySet Name="RegistedVoter" EntityType="Self.RegistedVoter" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Voter" EntityType="Self.Voter" />
+          <EntitySet Name="VoteResult" EntityType="Self.VoteResult" />
+          <EntitySet Name="MatchElectionBallots" EntityType="Self.MatchElectionBallots" />
+          <EntitySet Name="V_Voter" EntityType="Self.V_Voter" />
+          <AssociationSet Name="FK_Ballots_ElectionVote" Association="Self.FK_Ballots_ElectionVote">
+            <End Role="ElectionVote" EntitySet="ElectionVote" />
+            <End Role="Ballots" EntitySet="Ballots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Candidate_Ballots" Association="Self.FK_Candidate_Ballots">
+            <End Role="Ballots" EntitySet="Ballots" />
+            <End Role="Candidate" EntitySet="Candidate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchElectionBallots_Ballots" Association="Self.FK_MatchElectionBallots_Ballots">
+            <End Role="Ballots" EntitySet="Ballots" />
+            <End Role="MatchElectionBallots" EntitySet="MatchElectionBallots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchVoterBallots_Ballots" Association="Self.FK_MatchVoterBallots_Ballots">
+            <End Role="Ballots" EntitySet="Ballots" />
+            <End Role="MatchVoterBallots" EntitySet="MatchVoterBallots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VoteResult_Candidate" Association="Self.FK_VoteResult_Candidate">
+            <End Role="Candidate" EntitySet="Candidate" />
+            <End Role="VoteResult" EntitySet="VoteResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ElectionVote_ElectionStatus" Association="Self.FK_ElectionVote_ElectionStatus">
+            <End Role="ElectionStatus" EntitySet="ElectionStatus" />
+            <End Role="ElectionVote" EntitySet="ElectionVote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManageRole_ElectionVote" Association="Self.FK_ManageRole_ElectionVote">
+            <End Role="ElectionVote" EntitySet="ElectionVote" />
+            <End Role="ManageRole" EntitySet="ManageRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchElectionBallots_ElectionVote" Association="Self.FK_MatchElectionBallots_ElectionVote">
+            <End Role="ElectionVote" EntitySet="ElectionVote" />
+            <End Role="MatchElectionBallots" EntitySet="MatchElectionBallots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistedVoter_ElectionVote" Association="Self.FK_RegistedVoter_ElectionVote">
+            <End Role="ElectionVote" EntitySet="ElectionVote" />
+            <End Role="RegistedVoter" EntitySet="RegistedVoter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManageRole_ManageRoleStatus" Association="Self.FK_ManageRole_ManageRoleStatus">
+            <End Role="ManageRoleStatus" EntitySet="ManageRoleStatus" />
+            <End Role="ManageRole" EntitySet="ManageRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchVoterBallots_Voter" Association="Self.FK_MatchVoterBallots_Voter">
+            <End Role="Voter" EntitySet="Voter" />
+            <End Role="MatchVoterBallots" EntitySet="MatchVoterBallots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchVoterBallots_ElectionVote" Association="PSUOVSModel.FK_MatchVoterBallots_ElectionVote">
+            <End Role="ElectionVote" EntitySet="ElectionVote" />
+            <End Role="MatchVoterBallots" EntitySet="MatchVoterBallots" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_MatchVoterBallots_ElectionVote">
+          <End Type="PSUOVSModel.ElectionVote" Role="ElectionVote" Multiplicity="1" />
+          <End Type="PSUOVSModel.MatchVoterBallots" Role="MatchVoterBallots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectionVote">
+              <PropertyRef Name="ElectionID" />
+            </Principal>
+            <Dependent Role="MatchVoterBallots">
+              <PropertyRef Name="ElectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PSUOVSModelStoreContainer" CdmEntityContainer="PSUOVSEntities1">
+          <EntitySetMapping Name="Ballots">
+            <EntityTypeMapping TypeName="PSUOVSModel.Ballots">
+              <MappingFragment StoreEntitySet="Ballots">
+                <ScalarProperty Name="BallotsID" ColumnName="BallotsID" />
+                <ScalarProperty Name="ElectionID" ColumnName="ElectionID" />
+                <ScalarProperty Name="BallotsNameTH" ColumnName="BallotsNameTH" />
+                <ScalarProperty Name="BallotsNameEN" ColumnName="BallotsNameEN" />
+                <ScalarProperty Name="BallotsDescriptionTH" ColumnName="BallotsDescriptionTH" />
+                <ScalarProperty Name="BallotsDescriptionEN" ColumnName="BallotsDescriptionEN" />
+                <ScalarProperty Name="AllowNoChoice" ColumnName="AllowNoChoice" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Candidate">
+            <EntityTypeMapping TypeName="PSUOVSModel.Candidate">
+              <MappingFragment StoreEntitySet="Candidate">
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="BallotsID" ColumnName="BallotsID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="CandidateNumber" ColumnName="CandidateNumber" />
+                <ScalarProperty Name="NameTH" ColumnName="NameTH" />
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="FacID" ColumnName="FacID" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ElectionStatus">
+            <EntityTypeMapping TypeName="PSUOVSModel.ElectionStatus">
+              <MappingFragment StoreEntitySet="ElectionStatus">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ElectionVote">
+            <EntityTypeMapping TypeName="PSUOVSModel.ElectionVote">
+              <MappingFragment StoreEntitySet="ElectionVote">
+                <ScalarProperty Name="ElectionID" ColumnName="ElectionID" />
+                <ScalarProperty Name="ElectionNameTH" ColumnName="ElectionNameTH" />
+                <ScalarProperty Name="ElectionNameEN" ColumnName="ElectionNameEN" />
+                <ScalarProperty Name="ElectionDescriptionTH" ColumnName="ElectionDescriptionTH" />
+                <ScalarProperty Name="ElectionDescriptionEN" ColumnName="ElectionDescriptionEN" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusReport" ColumnName="StatusReport" />
+                <ScalarProperty Name="DateTimeStart" ColumnName="DateTimeStart" />
+                <ScalarProperty Name="DateTimeClose" ColumnName="DateTimeClose" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faculty">
+            <EntityTypeMapping TypeName="PSUOVSModel.Faculty">
+              <MappingFragment StoreEntitySet="Faculty">
+                <ScalarProperty Name="FacID" ColumnName="FacID" />
+                <ScalarProperty Name="FacName" ColumnName="FacName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="PSUOVSModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="SEX_CODE" ColumnName="SEX_CODE" />
+                <ScalarProperty Name="SEX_NAME" ColumnName="SEX_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManageRole">
+            <EntityTypeMapping TypeName="PSUOVSModel.ManageRole">
+              <MappingFragment StoreEntitySet="ManageRole">
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="ElectionID" ColumnName="ElectionID" />
+                <ScalarProperty Name="PSUPassport" ColumnName="PSUPassport" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="IsActived" ColumnName="IsActived" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManageRoleStatus">
+            <EntityTypeMapping TypeName="PSUOVSModel.ManageRoleStatus">
+              <MappingFragment StoreEntitySet="ManageRoleStatus">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MatchVoterBallots">
+            <EntityTypeMapping TypeName="PSUOVSModel.MatchVoterBallots">
+              <MappingFragment StoreEntitySet="MatchVoterBallots">
+                <ScalarProperty Name="ElectionID" ColumnName="ElectionID" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="PSUPassport" ColumnName="PSUPassport" />
+                <ScalarProperty Name="BallotsID" ColumnName="BallotsID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Voted" ColumnName="Voted" />
+                <ScalarProperty Name="VotedDate" ColumnName="VotedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistedVoter">
+            <EntityTypeMapping TypeName="PSUOVSModel.RegistedVoter">
+              <MappingFragment StoreEntitySet="RegistedVoter">
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="PSUPassport" ColumnName="PSUPassport" />
+                <ScalarProperty Name="ElectionID" ColumnName="ElectionID" />
+                <ScalarProperty Name="Registed" ColumnName="Registed" />
+                <ScalarProperty Name="RegistedDate" ColumnName="RegistedDate" />
+                <ScalarProperty Name="RegistedBy" ColumnName="RegistedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PSUOVSModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voter">
+            <EntityTypeMapping TypeName="PSUOVSModel.Voter">
+              <MappingFragment StoreEntitySet="Voter">
+                <ScalarProperty Name="PSUPassport" ColumnName="PSUPassport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VoteResult">
+            <EntityTypeMapping TypeName="PSUOVSModel.VoteResult">
+              <MappingFragment StoreEntitySet="VoteResult">
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="BallotsID" ColumnName="BallotsID" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MatchElectionBallots">
+            <EntityTypeMapping TypeName="PSUOVSModel.MatchElectionBallots">
+              <MappingFragment StoreEntitySet="MatchElectionBallots">
+                <ScalarProperty Name="ElectionID" ColumnName="ElectionID" />
+                <ScalarProperty Name="BallotsID" ColumnName="BallotsID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Voter">
+            <EntityTypeMapping TypeName="PSUOVSModel.V_Voter">
+              <MappingFragment StoreEntitySet="V_Voter">
+                <ScalarProperty Name="PSUPassport" ColumnName="PSUPassport" />
+                <ScalarProperty Name="SEX_CODE" ColumnName="SEX_CODE" />
+                <ScalarProperty Name="FAC_ID" ColumnName="FAC_ID" />
+                <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+                <ScalarProperty Name="STUD_NAME_THAI" ColumnName="STUD_NAME_THAI" />
+                <ScalarProperty Name="STUD_SNAME_THAI" ColumnName="STUD_SNAME_THAI" />
+                <ScalarProperty Name="STUD_NAME_ENG" ColumnName="STUD_NAME_ENG" />
+                <ScalarProperty Name="STUD_SNAME_ENG" ColumnName="STUD_SNAME_ENG" />
+                <ScalarProperty Name="FAC_NAME_THAI" ColumnName="FAC_NAME_THAI" />
+                <ScalarProperty Name="SEX_NAME" ColumnName="SEX_NAME" />
+                <ScalarProperty Name="FAC_NAME_ENG" ColumnName="FAC_NAME_ENG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

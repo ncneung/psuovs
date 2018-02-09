@@ -67,7 +67,7 @@
                          <li><a runat="server" href="~/Page/DebtUnit.aspx">รายงานลูกหนี้คงค้างในหน่วยงาน</a></li>
                         <li><a runat="server" href="~/Page/ManageUser.aspx">จัดการสิทธิ์ผู้ใช้</a></li>--%>
                        <li><a runat="server" href="~/admission/ImportPayment.aspx" id="liCheckStatus" visible ="false">สถานะการเลือกตั้ง</a></li>
-                         <li><a runat="server" href="~/admission/ImportPayment.aspx" id="liRegistVoter" visible ="false">ลงทะเบียน</a></li>
+                         <li><a runat="server" href="~/page/RegistedVoter.aspx" id="liRegistVoter" visible ="false">ลงทะเบียน</a></li>
                       <%--  <li><a runat="server" href="~/admission/DeleteRegist.aspx" target="_blank">ลบข้อมูล</a></li>
                         <li><a runat="server" href="~/admission/PrintRegist.aspx" target="_blank">พิมพ์ใบสมัคร</a></li>
                         <li><a runat="server" href="~/admission/Billpayment.aspx" target="_blank">Billpayment</a></li>  --%>                     

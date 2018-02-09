@@ -55,21 +55,23 @@
 
 
         End If
-        Dim classVoter As New clsVoter
-        Dim classRole As New clsRole
-        Dim strPSUPassport As String = Context.User.Identity.Name
-        If classRole.CheckRole(strPSUPassport, 1) = True Then
-            liCheckStatus.Visible = True
-            liRegistVoter.Visible = True
 
-        ElseIf classRole.CheckRole(strPSUPassport, 2) = True Then
-            liCheckStatus.Visible = True
-            liRegistVoter.Visible = True
-        ElseIf classRole.CheckRole(strPSUPassport, 3) = True Then
-            liCheckStatus.Visible = False
-            liRegistVoter.Visible = True
+        'เก็บไว้ก่อนไว้ค่อยทำเช็คสิทธิ์ที่จะเห็นแต่ละ หน้า 09/02/2561
+        'Dim classVoter As New clsVoterBK
+        'Dim classRole As New clsRole
+        'Dim strPSUPassport As String = Context.User.Identity.Name
+        'If classRole.CheckRole(strPSUPassport, 1) = True Then
+        '    liCheckStatus.Visible = True
+        '    liRegistVoter.Visible = True
 
-        End If
+        'ElseIf classRole.CheckRole(strPSUPassport, 2) = True Then
+        '    liCheckStatus.Visible = True
+        '    liRegistVoter.Visible = True
+        'ElseIf classRole.CheckRole(strPSUPassport, 3) = True Then
+        '    liCheckStatus.Visible = False
+        '    liRegistVoter.Visible = True
+
+        'End If
 
     End Sub
 

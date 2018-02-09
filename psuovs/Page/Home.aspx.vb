@@ -8,6 +8,7 @@
         Dim classRole As New clsRole
 
 
+
         'Dim role = classRole.GetRole("noppachart.l")
         'Dim roles = classRole.GetRoles("noppachart.l")
 
