@@ -114,8 +114,6 @@ warning 6002: The table/view 'PSUOVS.dbo.MatchElectionBallots' does not have a p
           <Property Name="ElectionID" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="datetime" />
           <Property Name="EndDate" Type="datetime" />
-          <Property Name="Voted" Type="bit" />
-          <Property Name="VotedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="RegistedVoter">
           <Key>
@@ -129,6 +127,8 @@ warning 6002: The table/view 'PSUOVS.dbo.MatchElectionBallots' does not have a p
           <Property Name="RegistedBy" Type="varchar" MaxLength="50" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="Voted" Type="bit" />
+          <Property Name="VotedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -519,8 +519,6 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
           <Property Name="BallotsID" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
-          <Property Name="Voted" Type="Boolean" />
-          <Property Name="VotedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Ballots" Relationship="Self.FK_MatchVoterBallots_Ballots" FromRole="MatchVoterBallots" ToRole="Ballots" />
           <NavigationProperty Name="Voter" Relationship="Self.FK_MatchVoterBallots_Voter" FromRole="MatchVoterBallots" ToRole="Voter" />
           <Property Name="ElectionID" Type="Int32" Nullable="false" />
@@ -539,6 +537,8 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ElectionVote" Relationship="Self.FK_RegistedVoter_ElectionVote" FromRole="RegistedVoter" ToRole="ElectionVote" />
+          <Property Name="Voted" Type="Boolean" />
+          <Property Name="VotedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -914,14 +914,14 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
                 <ScalarProperty Name="BallotsID" ColumnName="BallotsID" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="Voted" ColumnName="Voted" />
-                <ScalarProperty Name="VotedDate" ColumnName="VotedDate" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RegistedVoter">
             <EntityTypeMapping TypeName="PSUOVSModel.RegistedVoter">
               <MappingFragment StoreEntitySet="RegistedVoter">
+                <ScalarProperty Name="VotedDate" ColumnName="VotedDate" />
+                <ScalarProperty Name="Voted" ColumnName="Voted" />
                 <ScalarProperty Name="AutoID" ColumnName="AutoID" />
                 <ScalarProperty Name="PSUPassport" ColumnName="PSUPassport" />
                 <ScalarProperty Name="ElectionID" ColumnName="ElectionID" />

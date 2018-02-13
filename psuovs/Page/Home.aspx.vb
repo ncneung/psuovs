@@ -5,7 +5,7 @@
 
 
         Dim strPSUPassport As String = Context.User.Identity.Name
-        Dim classRole As New clsRole
+        'Dim classRole As New clsRole
 
 
 

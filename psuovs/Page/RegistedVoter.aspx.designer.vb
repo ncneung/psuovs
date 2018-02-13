@@ -59,6 +59,42 @@ Partial Public Class RegistedVoter
     Protected WithEvents lbError As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''tdAllRegisted control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tdAllRegisted As Global.System.Web.UI.HtmlControls.HtmlTableCell
+    
+    '''<summary>
+    '''lbHDetail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbHDetail As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''tableVoterDetail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tableVoterDetail As Global.System.Web.UI.WebControls.Table
+    
+    '''<summary>
+    '''lbHElections control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbHElections As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''tableRegistedDetail control.
     '''</summary>
     '''<remarks>
@@ -66,4 +102,22 @@ Partial Public Class RegistedVoter
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tableRegistedDetail As Global.System.Web.UI.WebControls.Table
+    
+    '''<summary>
+    '''btnRegisted control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnRegisted As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''lbAns control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbAns As Global.System.Web.UI.WebControls.Label
 End Class

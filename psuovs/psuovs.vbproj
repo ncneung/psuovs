@@ -317,11 +317,8 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
     <Compile Include="BLLs\Code\clsBallots.vb" />
-    <Compile Include="BLLs\Code\clsConnect.vb" />
     <Compile Include="BLLs\Code\clsElection.vb" />
-    <Compile Include="BLLs\Code\clsHome.vb" />
     <Compile Include="BLLs\Code\clsRegisted.vb" />
-    <Compile Include="BLLs\Code\clsRole.vb" />
     <Compile Include="BLLs\Code\clsVoters.vb" />
     <Compile Include="BLLs\Code\testna.vb" />
     <Compile Include="BLLs\Interfaces\IBallotsManagement.vb" />

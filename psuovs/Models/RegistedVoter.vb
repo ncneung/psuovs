@@ -19,6 +19,8 @@ Partial Public Class RegistedVoter
     Public Property RegistedBy As String
     Public Property ModifiedDate As Nullable(Of Date)
     Public Property ModifiedBy As String
+    Public Property Voted As Nullable(Of Boolean)
+    Public Property VotedDate As Nullable(Of Date)
 
     Public Overridable Property ElectionVote As ElectionVote
 

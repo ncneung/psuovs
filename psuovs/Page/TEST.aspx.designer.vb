@@ -41,6 +41,15 @@ Partial Public Class TEST
     Protected WithEvents lbTest As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''tableRegistedDetail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tableRegistedDetail As Global.System.Web.UI.WebControls.Table
+    
+    '''<summary>
     '''GridView1 control.
     '''</summary>
     '''<remarks>

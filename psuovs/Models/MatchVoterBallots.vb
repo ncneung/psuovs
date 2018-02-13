@@ -16,8 +16,6 @@ Partial Public Class MatchVoterBallots
     Public Property BallotsID As Integer
     Public Property StartDate As Nullable(Of Date)
     Public Property EndDate As Nullable(Of Date)
-    Public Property Voted As Nullable(Of Boolean)
-    Public Property VotedDate As Nullable(Of Date)
     Public Property ElectionID As Integer
 
     Public Overridable Property Ballots As Ballots
