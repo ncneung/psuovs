@@ -10,16 +10,10 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class RegistedVoter
-    Public Property AutoID As Integer
-    Public Property PSUPassport As String
-    Public Property ElectionID As Integer
-    Public Property Registed As Nullable(Of Boolean)
-    Public Property RegistedDate As Nullable(Of Date)
-    Public Property RegistedBy As String
-    Public Property ModifiedDate As Nullable(Of Date)
-    Public Property ModifiedBy As String
+Partial Public Class ElectionType
+    Public Property ElectionTypeID As Integer
+    Public Property ElectionTypeName As String
 
-    Public Overridable Property ElectionVote As ElectionVote
+    Public Overridable Property ElectionVote As ICollection(Of ElectionVote) = New HashSet(Of ElectionVote)
 
 End Class

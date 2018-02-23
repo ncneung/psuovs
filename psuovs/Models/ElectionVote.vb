@@ -24,6 +24,7 @@ Partial Public Class ElectionVote
     Public Property CreatedBy As String
     Public Property ModifiedDate As Nullable(Of Date)
     Public Property ModifiedBy As String
+    Public Property ElectionTypeID As Integer
 
     Public Overridable Property Ballots As ICollection(Of Ballots) = New HashSet(Of Ballots)
     Public Overridable Property ElectionStatus As ElectionStatus
@@ -31,5 +32,6 @@ Partial Public Class ElectionVote
     Public Overridable Property MatchElectionBallots As ICollection(Of MatchElectionBallots) = New HashSet(Of MatchElectionBallots)
     Public Overridable Property RegistedVoter As ICollection(Of RegistedVoter) = New HashSet(Of RegistedVoter)
     Public Overridable Property MatchVoterBallots As ICollection(Of MatchVoterBallots) = New HashSet(Of MatchVoterBallots)
+    Public Overridable Property ElectionType As ElectionType
 
 End Class

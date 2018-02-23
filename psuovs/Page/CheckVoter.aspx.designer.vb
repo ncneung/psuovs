@@ -11,104 +11,77 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class TEST
+Partial Public Class CheckVoter
     
     '''<summary>
-    '''TextBox1 control.
+    '''lbElecName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TextBox1 As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lbElecName As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Button1 control.
+    '''Label1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''lbTest control.
+    '''lbTotalVoter control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbTest As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbTotalVoter As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''tableRegistedDetail control.
+    '''Label2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tableRegistedDetail As Global.System.Web.UI.WebControls.Table
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''GridView1 control.
+    '''lbTotalRegisted control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents lbTotalRegisted As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''CheckBox1 control.
+    '''Label3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents CheckBox1 As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''CheckBoxList1 control.
+    '''lbTotalVoted control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents CheckBoxList1 As Global.System.Web.UI.WebControls.CheckBoxList
+    Protected WithEvents lbTotalVoted As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''RadioButton1 control.
+    '''lbUpdateTime control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadioButton1 As Global.System.Web.UI.WebControls.RadioButton
-    
-    '''<summary>
-    '''RadioButtonList2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadioButtonList2 As Global.System.Web.UI.WebControls.RadioButtonList
-    
-    '''<summary>
-    '''RadioButtonList1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadioButtonList1 As Global.System.Web.UI.WebControls.RadioButtonList
-    
-    '''<summary>
-    '''Repeater1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Repeater1 As Global.System.Web.UI.WebControls.Repeater
+    Protected WithEvents lbUpdateTime As Global.System.Web.UI.WebControls.Label
 End Class

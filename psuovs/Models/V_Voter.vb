@@ -22,5 +22,9 @@ Partial Public Class V_Voter
     Public Property FAC_NAME_THAI As String
     Public Property SEX_NAME As String
     Public Property FAC_NAME_ENG As String
+    Public Property BallotsID As Integer
+    Public Property ElectionID As Integer
+    Public Property Voted As Nullable(Of Boolean)
+    Public Property VotedDate As Nullable(Of Date)
 
 End Class

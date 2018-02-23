@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class RegistedVoter
+Partial Public Class RegistedVoterPage
     
     '''<summary>
     '''lbText1 control.
@@ -120,4 +120,13 @@ Partial Public Class RegistedVoter
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbAns As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lbAns2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbAns2 As Global.System.Web.UI.WebControls.Label
 End Class

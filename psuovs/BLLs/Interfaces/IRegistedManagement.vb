@@ -7,7 +7,9 @@
     Function updateMatchVoterBallots(ByVal autoid As Integer) As MatchVoterBallots
     Function insertMatchVoterBallots(ByVal psupassport As String, ByVal ballotsID As Integer, ByVal electionID As Integer) As MatchVoterBallots
     Function deleteMatchVoterBallots(ByVal psupassport As String, ByVal ballotsID As Integer, ByVal electionID As Integer) As MatchVoterBallots
-    Function insertRegistedVoter(ByVal psupassport As String, ByVal electionID As Integer, ByVal BallotsID As Integer, ByVal Registed As Boolean, ByVal RegistedDate As Date, ByVal RegistedBy As String) As RegistedVoter
+    Function insertRegistedVoter(ByVal psupassport As String, ByVal electionID As Integer, ByVal registed As Boolean, ByVal RegistedDate As Date, ByVal RegistedBy As String) As RegistedVoter
+    Function selectRegistedVoter(ByVal psupassport As String, ByVal electionID As Integer) As RegistedVoter
+    Function countRegist(ByVal electionid As Integer) As List(Of RegistedVoter)
 #End Region
 
 

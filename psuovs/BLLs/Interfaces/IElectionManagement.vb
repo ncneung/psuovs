@@ -1,7 +1,8 @@
 ﻿Public Interface IElectionManagement
 
 #Region "การจัดการเลือกตั้ง"
-    Function GetElection(ElectionID As String) As ElectionVote
+    Function GetElection(electionID As Integer) As ElectionVote
+    Function GetElectionForVote(ByVal electionID As Integer) As ElectionVote
     'Function GetElections() As List(Of ElectionVote)
     'รายการเลือกตั้งที่ปรากฎรายชื่อของ ผู้มีสิทธิ์
     'Function GetElections(VoterID As String) As IEnumerable(Of Models.Election)
@@ -11,6 +12,7 @@
 #End Region
 
 #Region "บัตรลงคะแนน"
+
     'บัตรลงคะแนนของการเลือกตั้ง
     'Function GetBallots(ElectionID As String) As IEnumerable(Of Models.Ballot)
     'บัตรลงคะแนนที่ผู้มีสิทธิ์ลงคะแนนได้

@@ -10,7 +10,7 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %>PSU Online Vote System</title>
+    <title><%: Page.Title %>PSUPhuket Online Vote System</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -47,17 +47,18 @@
 
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">     
-                <div class="navbar-header">   
+                <%--<div class="navbar-header">   
                              <asp:Image ID="Image1" runat="server" ImageUrl="~/Image/PSU_Original_logo.png" Width="34px" />
-                    &nbsp;</div>                         
-                <div class="navbar-header">                    
+                    &nbsp;</div>--%>                         
+                <div class="navbar-header"> 
+                    <asp:Image ID="Image1" runat="server" ImageUrl="~/Image/PSU_Original_logo.png" Width="34px" style="float:left"/>                   
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
                     
-                    <a class="navbar-brand" runat="server" href="~/Login_Main.aspx"><b>PSU Online Vote System</b></a>
+                    <a style="margin-left:2px" class="navbar-brand" runat="server" href="~/Login_Main.aspx"><b>PSUPhuket Online Vote System</b></a>
                     
                 </div>
                 <div class="navbar-collapse collapse">

@@ -220,7 +220,11 @@
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\psuovs.vbproj.GenerateResource.Cache" />
     <Content Include="obj\Debug\psuovs.vbprojResolveAssemblyReference.cache" />
+    <Content Include="Page\CheckVoter.aspx" />
     <Content Include="Page\RegistedVoter.aspx" />
+    <Content Include="Page\ResultElection.aspx" />
+    <Content Include="Page\TestAddtable.aspx" />
+    <Content Include="Page\Vote.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -317,14 +321,20 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
     <Compile Include="BLLs\Code\clsBallots.vb" />
+    <Compile Include="BLLs\Code\clsCandidate.vb" />
     <Compile Include="BLLs\Code\clsElection.vb" />
     <Compile Include="BLLs\Code\clsRegisted.vb" />
+    <Compile Include="BLLs\Code\clsResult.vb" />
+    <Compile Include="BLLs\Code\clsStudentOrganization.vb" />
     <Compile Include="BLLs\Code\clsVoters.vb" />
     <Compile Include="BLLs\Code\testna.vb" />
     <Compile Include="BLLs\Interfaces\IBallotsManagement.vb" />
+    <Compile Include="BLLs\Interfaces\ICandidateManagement.vb" />
     <Compile Include="BLLs\Interfaces\IElectionManagement.vb" />
     <Compile Include="BLLs\Interfaces\IRegistedManagement.vb" />
+    <Compile Include="BLLs\Interfaces\IResultManagement.vb" />
     <Compile Include="BLLs\Interfaces\IRoleManageMent.vb" />
+    <Compile Include="BLLs\Interfaces\IStudentOrganizationManagement.vb" />
     <Compile Include="BLLs\Interfaces\IVoterManagement.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
@@ -342,8 +352,10 @@
     <Compile Include="Models\Candidate.vb">
       <DependentUpon>PSUOVSModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ElectionDataModels.vb" />
     <Compile Include="Models\ElectionStatus.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ElectionType.vb">
       <DependentUpon>PSUOVSModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ElectionVote.vb">
@@ -385,16 +397,19 @@
     </Compile>
     <Compile Include="Models\RegistedVoter.vb">
       <DependentUpon>PSUOVSModels.tt</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Models\RoleDataModels.vb" />
+    <Compile Include="Models\ReportFacVote.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportVote.vb">
+      <DependentUpon>PSUOVSModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagrams.vb">
       <DependentUpon>PSUOVSModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Voter.vb">
       <DependentUpon>PSUOVSModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\VoterDataModels.vb" />
     <Compile Include="Models\VoteResult.vb">
       <DependentUpon>PSUOVSModels.tt</DependentUpon>
     </Compile>
@@ -420,6 +435,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Page\CheckVoter.aspx.designer.vb">
+      <DependentUpon>CheckVoter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\CheckVoter.aspx.vb">
+      <DependentUpon>CheckVoter.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Page\Home.aspx.designer.vb">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
@@ -434,12 +456,33 @@
       <DependentUpon>RegistedVoter.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Page\ResultElection.aspx.designer.vb">
+      <DependentUpon>ResultElection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ResultElection.aspx.vb">
+      <DependentUpon>ResultElection.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Page\TEST.aspx.designer.vb">
       <DependentUpon>TEST.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\TEST.aspx.vb">
       <DependentUpon>TEST.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\TestAddtable.aspx.designer.vb">
+      <DependentUpon>TestAddtable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\TestAddtable.aspx.vb">
+      <DependentUpon>TestAddtable.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Page\Vote.aspx.designer.vb">
+      <DependentUpon>Vote.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\Vote.aspx.vb">
+      <DependentUpon>Vote.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="SitePSUOVS.Master.designer.vb">
       <DependentUpon>SitePSUOVS.Master</DependentUpon>

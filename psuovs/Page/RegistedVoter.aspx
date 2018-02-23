@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/SitePSUOVS.Master" CodeBehind="RegistedVoter.aspx.vb" Inherits="PSUOVS.RegistedVoter" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/SitePSUOVS.Master" CodeBehind="RegistedVoter.aspx.vb" Inherits="PSUOVS.RegistedVoterPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
@@ -6,7 +6,7 @@
     <asp:Label ID="lbText1" runat="server" Text="Registed" Font-Bold="True" Font-Size="Large" ForeColor="Blue"></asp:Label>
     <br />
     <br />
-    <asp:Label ID="lbText2" runat="server" Text="PSUPassport" Font-Bold="True" Font-Size="Medium"></asp:Label>&nbsp;
+    <asp:Label ID="lbText2" runat="server" Text="PSUPassport 5735512073" Font-Bold="True" Font-Size="Medium"></asp:Label>&nbsp;
     <asp:TextBox ID="tbPassport" runat="server" Width="193px"></asp:TextBox>&nbsp;
     <asp:Button ID="btnSearch" runat="server" Text="Search" ></asp:Button>
     &nbsp;&nbsp;
@@ -35,10 +35,10 @@
 
     &nbsp;
     <asp:Label ID="lbAns" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="#0066FF"></asp:Label>
-    </td>
-
-    <%--<input id="Button1" type="button" value="button" /><br />--%>
     
+&nbsp;&nbsp;
+    <asp:Label ID="lbAns2" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="#0066FF"></asp:Label>
+        </td>
     
        
 </asp:Content>

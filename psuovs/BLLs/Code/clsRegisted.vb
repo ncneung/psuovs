@@ -1,8 +1,8 @@
 ﻿Imports PSUOVS
-Imports PSUOVS.Models
 
 Public Class clsRegisted
     Implements IRegistedManagement
+
     Public Function getBallotsForRegisted(electionID As Integer) As List(Of Ballots) Implements IRegistedManagement.getBallotsForRegisted
         'Dim getElection As IElectionManagement = New clsElection
 
@@ -84,9 +84,6 @@ Public Class clsRegisted
             db.SaveChanges()
             Return result
         End If
-
-
-
     End Function
     Public Function deleteMatchVoterBallots(ByVal psupassport As String, ByVal ballotsID As Integer, ByVal electionID As Integer) As MatchVoterBallots Implements IRegistedManagement.deleteMatchVoterBallots
         Dim db As PSUOVSEntities1 = New PSUOVSEntities1
@@ -103,8 +100,22 @@ Public Class clsRegisted
         Throw New NotImplementedException()
     End Function
 
-    Public Function insertRegistedVoter(psupassport As String, electionID As Integer, BallotsID As Integer, Registed As Boolean, RegistedDate As Date, RegistedBy As String) As RegistedVoter Implements IRegistedManagement.insertRegistedVoter
-        Throw New NotImplementedException()
+    Public Function insertRegistedVoter(psupassport As String, electionID As Integer, registed As Boolean, registedDate As Date, registedBy As String) As RegistedVoter Implements IRegistedManagement.insertRegistedVoter
+        Dim db As PSUOVSEntities1 = New PSUOVSEntities1
+        Dim addRegist As New RegistedVoter
+        addRegist.PSUPassport = psupassport
+        addRegist.ElectionID = electionID
+        addRegist.Registed = registed
+        addRegist.RegistedDate = registedDate
+        addRegist.RegistedBy = registedBy
+
+        Dim result = db.RegistedVoter.Add(addRegist)
+        If IsNothing(result) Then
+            Return Nothing
+        Else
+            db.SaveChanges()
+            Return result
+        End If
     End Function
 
     Public Function selectMatchVoterBallots(psupassport As String, ballotsID As Integer, electionID As Integer) As MatchVoterBallots Implements IRegistedManagement.selectMatchVoterBallots
@@ -119,14 +130,37 @@ Public Class clsRegisted
     End Function
 
     Public Function updateMatchVoterBallots(autoid As Integer) As MatchVoterBallots Implements IRegistedManagement.updateMatchVoterBallots
+        'Dim db As PSUOVSEntities1 = New PSUOVSEntities1
+        'Dim u = db.MatchVoterBallots.Where(Function(s) s.AutoID = autoid).FirstOrDefault()
+        'If IsNothing(u) Then
+        '    Return Nothing
+        'Else
+        '    db.SaveChanges()
+        'End If
+
+
+        Throw New NotImplementedException()
+    End Function
+
+    Public Function selectRegistedVoter(psupassport As String, electionID As Integer) As RegistedVoter Implements IRegistedManagement.selectRegistedVoter
         Dim db As PSUOVSEntities1 = New PSUOVSEntities1
-        Dim u = db.MatchVoterBallots.Where(Function(s) s.AutoID = autoid).FirstOrDefault()
-        If IsNothing(u) Then
+        Dim result = db.RegistedVoter.Where(Function(r) r.PSUPassport = psupassport And r.ElectionID = electionID).FirstOrDefault()
+        If IsNothing(result) Then
             Return Nothing
         Else
-            db.SaveChanges()
+            Return result
         End If
+        Throw New NotImplementedException()
+    End Function
 
+    Public Function countRegist(electionid As Integer) As List(Of RegistedVoter) Implements IRegistedManagement.countRegist
+        Dim db As PSUOVSEntities1 = New PSUOVSEntities1
+        Dim results = db.RegistedVoter.Where(Function(r) r.ElectionID = electionid And r.Registed = True)
+        If IsNothing(results) Then
+            Return Nothing
+        Else
+            Return results.ToList()
+        End If
 
         Throw New NotImplementedException()
     End Function

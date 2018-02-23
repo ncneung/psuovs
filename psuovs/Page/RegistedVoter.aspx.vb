@@ -1,17 +1,14 @@
-﻿Imports System
-Imports System.Data
-Imports System.Data.OleDb
-Imports System.Data.OleDb.OleDbConnection
-Imports System.Data.SqlClient
-Imports System.IO.IOException
-Imports System.IO
-Imports System.Text
-Imports System.Web.UI.WebControls
-Public Class RegistedVoter
+﻿Imports System.Web.UI.WebControls
+Public Class RegistedVoterPage
     Inherits System.Web.UI.Page
-    'Dim strPSUPassport As String = Context.User.Identity.Name
-    Dim strPSUPassport As String = "5735512073"
+
+    '5735512073
+    Dim strPSUPassport As String = ""
     Dim intElecID As Integer = 1
+    'Dim strUser As String = Context.User.Identity.Name 'รอใช้งาน
+    Dim strUser As String = "noppachart.l"
+
+
 
 
 
@@ -28,10 +25,13 @@ Public Class RegistedVoter
         '    lbError.Text = classDetail.STUD_NAME_THAI
 
         'End If
+        strPSUPassport = tbPassport.Text.ToLower().Trim()
         If Not IsPostBack Then
             tdAllRegisted.Visible = False
         End If
-        If tbPassport.Text <> "" Then
+        If strPSUPassport = "" Then
+
+        Else
             CallDataTable()
         End If
 
@@ -40,9 +40,10 @@ Public Class RegistedVoter
 
     Protected Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
 
-
+        strPSUPassport = tbPassport.Text.ToLower()
+        'Response.Write(strPSUPassport)
         Dim classVoter As IVoterManagement = New clsVoters
-        Dim voterDetail = classVoter.GetVoter(tbPassport.Text.ToLower())
+        Dim voterDetail = classVoter.GetVoter(strPSUPassport)
 
         If IsNothing(voterDetail) Then
             lbError.Text = "NO Data"
@@ -66,7 +67,7 @@ Public Class RegistedVoter
 
         Dim classVoter As IVoterManagement = New clsVoters
 
-        Dim voterDetail = classVoter.GetVoter(tbPassport.Text.ToLower())
+        Dim voterDetail = classVoter.GetVoter(strPSUPassport.ToString())
 
         Dim tempRowVDetailH As New TableRow()
         Dim tempCellRowVDetail0H As New TableCell()
@@ -150,7 +151,7 @@ Public Class RegistedVoter
         Dim ElectionDetail = classElection.GetElection(intElecID)
         lbHElections.Text = ElectionDetail.ElectionNameEN
 
-        Dim VoterRegisted = classRegisted.getBallotsForVoter(tbPassport.Text.ToLower())
+        Dim VoterRegisted = classRegisted.getBallotsForVoter(strPSUPassport)
         For m As Integer = 0 To BallotDetail.Count - 1
             Dim tempRowRDetail As New TableRow()
             Dim tempCellRowRDetail0 As New TableCell()
@@ -291,15 +292,25 @@ Public Class RegistedVoter
         Dim classRegist As IRegistedManagement = New clsRegisted
         If tableRegistedDetail.Rows.Count <> 0 Then
 
+            If IsNothing(classRegist.selectRegistedVoter(strPSUPassport, intElecID)) Then
+
+                classRegist.insertRegistedVoter(strPSUPassport, intElecID, True, Date.Now, strUser)
+                lbAns2.Text = "Registed Success"
+
+            Else
+                lbAns2.Text = "You have already Registered"
+            End If
+
+
 
             For x As Integer = 1 To tableRegistedDetail.Rows.Count - 1
                 'For x As Integer = 1 To 1
                 Dim cchkbox As CheckBox = tableRegistedDetail.Rows.Item(x).Cells(3).Controls(0)
-                If IsNothing(classRegist.selectMatchVoterBallots(tbPassport.Text.ToLower(), tableRegistedDetail.Rows.Item(x).Cells(0).Text, intElecID)) Then
+                If IsNothing(classRegist.selectMatchVoterBallots(strPSUPassport, tableRegistedDetail.Rows.Item(x).Cells(0).Text, intElecID)) Then
                     'ไม่มีในฐาน
                     If cchkbox.Checked Then
                         'insert
-                        classRegist.insertMatchVoterBallots(tbPassport.Text.ToLower(), tableRegistedDetail.Rows.Item(x).Cells(0).Text, intElecID)
+                        classRegist.insertMatchVoterBallots(strPSUPassport, tableRegistedDetail.Rows.Item(x).Cells(0).Text, intElecID)
                     Else
                         'ไม่ต้องทำไร
                     End If
@@ -309,7 +320,7 @@ Public Class RegistedVoter
                         'ไม่ต้องทำไร
                     Else
                         'delete
-                        classRegist.deleteMatchVoterBallots(tbPassport.Text.ToLower(), tableRegistedDetail.Rows.Item(x).Cells(0).Text, intElecID)
+                        classRegist.deleteMatchVoterBallots(strPSUPassport, tableRegistedDetail.Rows.Item(x).Cells(0).Text, intElecID)
                     End If
                 End If
 
@@ -319,10 +330,12 @@ Public Class RegistedVoter
             tableRegistedDetail.Rows.Clear()
             tableVoterDetail.Rows.Clear()
             CallDataTable()
-            lbAns.Text = "Success"
+            lbAns.Text = "Active Success"
         Else
-            lbAns.Text = "fail"
+            lbAns.Text = "Active Fail"
         End If
+
+
     End Sub
 
 

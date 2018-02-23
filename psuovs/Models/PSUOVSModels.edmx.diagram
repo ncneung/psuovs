@@ -32,6 +32,11 @@
         <AssociationConnector Association="PSUOVSModel.FK_ManageRole_ManageRoleStatus" ManuallyRouted="false" />
         <AssociationConnector Association="PSUOVSModel.FK_MatchVoterBallots_Voter" ManuallyRouted="false" />
         <AssociationConnector Association="PSUOVSModel.FK_MatchVoterBallots_ElectionVote" />
+        <EntityTypeShape EntityType="PSUOVSModel.ElectionType" Width="1.5" PointX="12.375" PointY="4.875" />
+        <EntityTypeShape EntityType="PSUOVSModel.ReportFacVote" Width="1.5" PointX="14.625" PointY="0.875" />
+        <EntityTypeShape EntityType="PSUOVSModel.ReportVote" Width="1.5" PointX="12.375" PointY="1" />
+        <AssociationConnector Association="PSUOVSModel.FK_ElectionVote_ElectionType" />
+        <AssociationConnector Association="PSUOVSModel.FK_ReportFacVote_ReportVote" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

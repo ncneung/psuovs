@@ -11,23 +11,14 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Home
+Partial Public Class TestAddtable
     
     '''<summary>
-    '''divElection control.
+    '''divtest control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents divElection As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''btnSubmit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnSubmit As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents divtest As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 End Class

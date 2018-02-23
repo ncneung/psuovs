@@ -10,16 +10,13 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class RegistedVoter
+Partial Public Class ReportFacVote
     Public Property AutoID As Integer
-    Public Property PSUPassport As String
     Public Property ElectionID As Integer
-    Public Property Registed As Nullable(Of Boolean)
-    Public Property RegistedDate As Nullable(Of Date)
-    Public Property RegistedBy As String
-    Public Property ModifiedDate As Nullable(Of Date)
-    Public Property ModifiedBy As String
+    Public Property FacID As Integer
+    Public Property FacName As String
+    Public Property TotalVote As Integer
 
-    Public Overridable Property ElectionVote As ElectionVote
+    Public Overridable Property ReportVote As ReportVote
 
 End Class

@@ -1,5 +1,4 @@
 ﻿Imports PSUOVS
-Imports PSUOVS.Models
 
 Public Class clsVoters
     Implements IVoterManagement
