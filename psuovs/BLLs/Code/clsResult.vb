@@ -3,9 +3,9 @@
 Public Class clsResult
     Implements IResultManagement
 
-    Public Function checkVoted(psupassport As String, ballotid As Integer, electionid As Integer) As MatchVoterBallots Implements IResultManagement.checkVoted
+    Public Function checkVoted(psupassport As String, electionid As Integer) As MatchVoterBallots Implements IResultManagement.checkVoted
         Dim db As PSUOVSEntities1 = New PSUOVSEntities1
-        Dim result = db.MatchVoterBallots.Where(Function(s) s.PSUPassport = psupassport And s.BallotsID = ballotid And s.ElectionID = electionid And s.Voted = True).FirstOrDefault()
+        Dim result = db.MatchVoterBallots.Where(Function(s) s.PSUPassport = psupassport And s.ElectionID = electionid And s.Voted = True).FirstOrDefault()
         If IsNothing(result) Then
             Return Nothing
         Else

@@ -221,9 +221,13 @@
     <Content Include="obj\Debug\psuovs.vbproj.GenerateResource.Cache" />
     <Content Include="obj\Debug\psuovs.vbprojResolveAssemblyReference.cache" />
     <Content Include="Page\CheckVoter.aspx" />
+    <Content Include="Page\MainCheckVoter.aspx" />
+    <Content Include="Page\MainRegistedVoter.aspx" />
+    <Content Include="Page\MainResultElection.aspx" />
+    <Content Include="Page\MainStatusElection.aspx" />
     <Content Include="Page\RegistedVoter.aspx" />
     <Content Include="Page\ResultElection.aspx" />
-    <Content Include="Page\TestAddtable.aspx" />
+    <Content Include="Page\StatusElection.aspx" />
     <Content Include="Page\Vote.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -237,7 +241,6 @@
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Page\Home.aspx" />
-    <Content Include="Page\TEST.aspx" />
     <Content Include="Pic\Microsoft-Excel-icon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -325,6 +328,7 @@
     <Compile Include="BLLs\Code\clsElection.vb" />
     <Compile Include="BLLs\Code\clsRegisted.vb" />
     <Compile Include="BLLs\Code\clsResult.vb" />
+    <Compile Include="BLLs\Code\clsRole.vb" />
     <Compile Include="BLLs\Code\clsStudentOrganization.vb" />
     <Compile Include="BLLs\Code\clsVoters.vb" />
     <Compile Include="BLLs\Code\testna.vb" />
@@ -407,9 +411,6 @@
     <Compile Include="Models\sysdiagrams.vb">
       <DependentUpon>PSUOVSModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Voter.vb">
-      <DependentUpon>PSUOVSModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\VoteResult.vb">
       <DependentUpon>PSUOVSModels.tt</DependentUpon>
     </Compile>
@@ -449,6 +450,34 @@
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Page\MainCheckVoter.aspx.designer.vb">
+      <DependentUpon>MainCheckVoter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\MainCheckVoter.aspx.vb">
+      <DependentUpon>MainCheckVoter.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Page\MainRegistedVoter.aspx.designer.vb">
+      <DependentUpon>MainRegistedVoter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\MainRegistedVoter.aspx.vb">
+      <DependentUpon>MainRegistedVoter.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Page\MainResultElection.aspx.designer.vb">
+      <DependentUpon>MainResultElection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\MainResultElection.aspx.vb">
+      <DependentUpon>MainResultElection.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Page\MainStatusElection.aspx.designer.vb">
+      <DependentUpon>MainStatusElection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\MainStatusElection.aspx.vb">
+      <DependentUpon>MainStatusElection.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Page\RegistedVoter.aspx.designer.vb">
       <DependentUpon>RegistedVoter.aspx</DependentUpon>
     </Compile>
@@ -463,18 +492,11 @@
       <DependentUpon>ResultElection.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Page\TEST.aspx.designer.vb">
-      <DependentUpon>TEST.aspx</DependentUpon>
+    <Compile Include="Page\StatusElection.aspx.designer.vb">
+      <DependentUpon>StatusElection.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Page\TEST.aspx.vb">
-      <DependentUpon>TEST.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Page\TestAddtable.aspx.designer.vb">
-      <DependentUpon>TestAddtable.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Page\TestAddtable.aspx.vb">
-      <DependentUpon>TestAddtable.aspx</DependentUpon>
+    <Compile Include="Page\StatusElection.aspx.vb">
+      <DependentUpon>StatusElection.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Page\Vote.aspx.designer.vb">

@@ -1,7 +1,5 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/SitePSUOVS.Master" CodeBehind="Home.aspx.vb" Inherits="PSUOVS.Home" EnableSessionState="True" %>
-
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/SitePSUOVS.Master" CodeBehind="MainCheckVoter.aspx.vb" Inherits="PSUOVS.MainCheckVoter" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
     <center>
         </br>
     <div id="divElection" runat="server">

@@ -21,7 +21,6 @@ Partial Public Class MatchVoterBallots
     Public Property VotedDate As Nullable(Of Date)
 
     Public Overridable Property Ballots As Ballots
-    Public Overridable Property Voter As Voter
     Public Overridable Property ElectionVote As ElectionVote
 
 End Class

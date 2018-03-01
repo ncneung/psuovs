@@ -2,75 +2,91 @@
 
 Public Class clsRole
     Implements IRoleManageMent
-    Dim _conn As clsConnect = New clsConnect()
 
-    Public Function CheckRole(strPSUPassport As String, roleID As Integer) As Boolean Implements IRoleManageMent.CheckRole
-        Dim strSQL As String = "SELECT * FROM ManageRole Where PSUPassport = '" & strPSUPassport & "' and RoleID =  " & roleID & "  "
-        Dim ds As DataSet = _conn.Fill(strSQL, "role")
-        If ds.Tables("role").Rows.Count > 0 Then
-            Return True
+    Public Function CheckRole(psupassport As String, rolename As String) As ManageRole Implements IRoleManageMent.CheckRole
+        Dim db As PSUOVSEntities1 = New PSUOVSEntities1
+        Dim result = db.ManageRole.Where(Function(m) m.PSUPassport = psupassport And m.IsActived = True And m.ManageRoleStatus.RoleName.ToLower() = rolename).FirstOrDefault()
+        If IsNothing(result) Then
+            Return Nothing
         Else
-            Return False
+            Return result
         End If
-
-        'Throw New NotImplementedException()
-    End Function
-
-    Public Function GetRoleData(strPSUPassport As String) As Role Implements IRoleManageMent.GetRoleData
         Throw New NotImplementedException()
     End Function
 
+    Public Function RoleCheckVoter(psupassport As String) As Boolean Implements IRoleManageMent.RoleCheckVoter
+        Dim db As PSUOVSEntities1 = New PSUOVSEntities1
+        Dim avalibleStatus = {"president", "staff"}
+        Dim result = db.ManageRole.Where(Function(m) m.PSUPassport = psupassport And avalibleStatus.Contains(m.ManageRoleStatus.RoleName.ToLower())).FirstOrDefault()
+        If IsNothing(result) Then
+            Return False
+        Else
+            Return True
+        End If
+        Throw New NotImplementedException()
+    End Function
 
+    Public Function RoleGetElection(psupassport As String) As List(Of ElectionVote) Implements IRoleManageMent.RoleGetElection
+        Dim db As PSUOVSEntities1 = New PSUOVSEntities1
+        Dim eIDs = db.ManageRole.Where(Function(r) r.PSUPassport = psupassport And r.IsActived = True) _
+                   .Select(Function(x) x.ElectionID).Distinct()
+        Dim classElection As IElectionManagement = New clsElection
+        Dim results As List(Of ElectionVote) = New List(Of ElectionVote)()
 
+        For Each eID In eIDs
+            Dim ele = classElection.GetElectionForVote(eID)
+            If (ele IsNot Nothing) Then
+                results.Add(ele)
+            End If
+        Next
+        Return results
+        Throw New NotImplementedException()
+    End Function
 
+    Public Function RoleRegistedVoter(psupassport As String) As Boolean Implements IRoleManageMent.RoleRegistedVoter
+        Dim db As PSUOVSEntities1 = New PSUOVSEntities1
+        Dim avalibleStatus = {"president", "staff"}
+        Dim result = db.ManageRole.Where(Function(m) m.PSUPassport = psupassport And avalibleStatus.Contains(m.ManageRoleStatus.RoleName.ToLower())).FirstOrDefault()
+        If IsNothing(result) Then
+            Return False
+        Else
+            Return True
+        End If
+        Throw New NotImplementedException()
+    End Function
 
+    Public Function RoleResultElection(psupassport As String) As Boolean Implements IRoleManageMent.RoleResultElection
+        'Dim db As PSUOVSEntities1 = New PSUOVSEntities1
+        'Dim avalibleStatus = {"president", "staff"}
+        'Dim result = db.ManageRole.Where(Function(m) m.PSUPassport = psupassport And avalibleStatus.Contains(m.ManageRoleStatus.RoleName.ToLower())).FirstOrDefault()
+        'If IsNothing(result) Then
+        '    Return False
+        'Else
+        '    Return True
+        'End If
+        Throw New NotImplementedException()
+    End Function
 
+    Public Function RoleStatusElection(psupassport As String) As Boolean Implements IRoleManageMent.RoleStatusElection
+        Dim db As PSUOVSEntities1 = New PSUOVSEntities1
+        'Dim avalibleStatus = {"president", "staff"}
+        Dim result = db.ManageRole.Where(Function(m) m.PSUPassport = psupassport And m.ManageRoleStatus.RoleName.ToLower() = "president").FirstOrDefault()
+        If IsNothing(result) Then
+            Return False
+        Else
+            Return True
+        End If
+        Throw New NotImplementedException()
+    End Function
 
-
-    'Function GetRoles(ByVal strPSUPassport As String) As List(Of Role)
-    '    Dim strSqL As String = "Select * from ManageRole Where PSUPassport = " & "'" & strPSUPassport & "'"
-
-    '    Dim results As New List(Of Role)
-
-    '    Dim ds As DataSet = _conn.Fill(strSqL, "role")
-
-    '    If (ds IsNot Nothing) Then
-
-    '        For Each role As DataRow In ds.Tables("role").Rows
-
-    '            Dim r = New Role()
-    '            With r
-    '                r.RoleID = role.Item("RoleID")
-    '                r.PSUPassport = role.Item("PSUPassport")
-    '                r.IsActived = role.Item("IsActived")
-    '                r.ElectionsID = role.Item("ElectionID")
-
-    '            End With
-    '            results.Add(r)
-    '        Next
-
-    '    End If
-
-    '    Return results
-    'End Function
-
-    'Function GetRole(ByVal strPSUPassport As String) As Role
-    '    Dim strSQL As String = "SELECT * from ManageRole Where PSUPassport = " & "'" & strPSUPassport & "'"
-    '    Dim result As Role
-
-    '    'Return Sql_Dataset(strSQL)
-
-    '    Dim ds As DataSet = _conn.Fill(strSQL, "role")
-
-    '    If (ds IsNot Nothing) Then
-    '        result = New Role()
-    '        With result
-    '            .RoleID = ds.Tables("role").Rows(0).Item("RoleID")
-    '        End With
-
-    '    End If
-    '    Return result
-    'End Function
-
-
+    Public Function RoleVote(psupassport As String) As Boolean Implements IRoleManageMent.RoleVote
+        Dim db As PSUOVSEntities1 = New PSUOVSEntities1
+        Dim result = db.RegistedVoter.Where(Function(m) m.PSUPassport = psupassport).FirstOrDefault()
+        If IsNothing(result) Then
+            Return False
+        Else
+            Return True
+        End If
+        Throw New NotImplementedException()
+    End Function
 End Class

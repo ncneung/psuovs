@@ -164,4 +164,15 @@ Public Class clsRegisted
 
         Throw New NotImplementedException()
     End Function
+
+    Public Function checkRegistTrue(psupassport As String, electionid As Integer) As RegistedVoter Implements IRegistedManagement.checkRegistTrue
+        Dim db As PSUOVSEntities1 = New PSUOVSEntities1
+        Dim result = db.RegistedVoter.Where(Function(r) r.PSUPassport = psupassport And r.ElectionID = electionid And r.Registed = True).FirstOrDefault()
+        If IsNothing(result) Then
+            Return Nothing
+        Else
+            Return result
+        End If
+        Throw New NotImplementedException()
+    End Function
 End Class

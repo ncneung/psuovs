@@ -2,14 +2,27 @@
 Imports System.Web.UI.WebControls
 Public Class Vote
     Inherits System.Web.UI.Page
-    Dim intElecID As Integer = 1
-    'Dim strPSUPassport As String = Context.User.Identity.Name
-    Dim strPSUPassport As String = "5735512073"
+    'Dim intElecID As Integer = 1
+    Dim intElecID As Integer
+    Dim strPSUPassport As String
+    'Dim strPSUPassport As String = "5735512073"
     Dim intCountRadioBtnList As Integer
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        CallTableVote()
+        Dim classRoleVote As IRoleManageMent = New clsRole
+        Dim classElection As IElectionManagement = New clsElection
+        Dim detailElection = classElection.GetDetailElectionForVote(Session("sPSUPassport"))
+        If classRoleVote.RoleVote(Session("sPSUPassport")) = True And Session("sElectionid") <> "" And detailElection.Count <> 0 Then
+            divBtnsummit.Visible = True
+            CallTableVote()
+        Else
+            lbError.Text = "You don't have the right to vote."
+            divBtnsummit.Visible = False
+        End If
+
     End Sub
     Protected Sub CallTableVote()
+        strPSUPassport = Session("sPSUPassport")
+        intElecID = Session("sElectionid")
         'ทำชื่อเลือกตั้ง
         'Dim classRegisted As IRegistedManagement = New clsRegisted
         'Dim elecRegisted = classRegisted.getElectionsForRegisted(strPSUPassport)
@@ -176,15 +189,16 @@ Public Class Vote
         Dim classResult As IResultManagement = New clsResult
         'classResult.updateScore(1, 50)
         If checkRadioList() = True Then
-            For i As Integer = 0 To intCountRadioBtnList - 1
-                Dim r1 As RadioButtonList = divElection.FindControl("radio" & i)
-                Dim t1 As Table = divElection.FindControl("tableballots" & i)
-                Dim ballotsid As Integer = t1.Rows.Item(0).Cells(0).ID
-                'Response.Write(r1.SelectedValue & " " & ballotsid & "</br>")
+            If IsNothing(classResult.checkVoted(strPSUPassport, intElecID)) Then
+                'ถ้าไม่มีแสดงว่า ยังไม่เคยโหวต ก็โหวตได้
+                'ทำการเช็คว่ามี Score หรือยัง
+                For i As Integer = 0 To intCountRadioBtnList - 1
+                    Dim r1 As RadioButtonList = divElection.FindControl("radio" & i)
+                    Dim t1 As Table = divElection.FindControl("tableballots" & i)
+                    Dim ballotsid As Integer = t1.Rows.Item(0).Cells(0).ID
+                    'Response.Write(r1.SelectedValue & " " & ballotsid & "</br>")
 
-                If IsNothing(classResult.checkVoted(strPSUPassport, ballotsid, intElecID)) Then
-                    'ถ้าไม่มีแสดงว่า ยังไม่เคยโหวต ก็โหวตได้
-                    'ทำการเช็คว่ามี Score หรือยัง
+
                     If IsNothing(classResult.selectScore(ballotsid, r1.SelectedValue)) Then
                         'ถ้าไม่มีก็ insert score และ update voted
 
@@ -196,14 +210,13 @@ Public Class Vote
                         classResult.updateVoted(strPSUPassport, ballotsid, intElecID)
                     End If
                     lbError.Text = ""
-                Else
-                    'ถ้ามีแสดงว่าเคยโหวตมาก่อน
-                    lbError.Text = "You have voted. Do not vote again. !!!"
-
-                End If
-            Next
+                Next
+            Else
+                'ถ้ามีแสดงว่าเคยโหวตมาก่อน
+                lbError.Text = ">>> You have voted. Don't vote again. <<<"
+            End If
         Else
-            lbError.Text = "...Please do all votes..."
+            lbError.Text = ">>>...Please do all votes...<<<"
         End If
 
     End Sub

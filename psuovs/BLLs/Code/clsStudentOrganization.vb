@@ -103,7 +103,9 @@ Public Class clsStudentOrganization
 
     Public Function countVoted(electionid As Integer) As List(Of String) Implements IStudentOrganizationManagement.countVoted
         Dim db As PSUOVSEntities1 = New PSUOVSEntities1
-        Dim result = db.V_Voter.Where(Function(v) v.ElectionID = electionid And v.Voted = True) _
+        'Dim result = db.V_Voter.Where(Function(v) v.ElectionID = electionid And v.Voted = True) _
+        '                        .Select(Function(d) d.PSUPassport).Distinct()
+        Dim result = db.MatchVoterBallots.Where(Function(v) v.ElectionID = electionid And v.Voted = True) _
                                 .Select(Function(d) d.PSUPassport).Distinct()
         If IsNothing(result) Then
             Return Nothing

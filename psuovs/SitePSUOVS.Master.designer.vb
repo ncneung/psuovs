@@ -23,13 +23,13 @@ Partial Public Class SitePSUOVS
     Protected WithEvents Image1 As Global.System.Web.UI.WebControls.Image
     
     '''<summary>
-    '''liCheckStatus control.
+    '''liCheckVoter control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents liCheckStatus As Global.System.Web.UI.HtmlControls.HtmlAnchor
+    Protected WithEvents liCheckVoter As Global.System.Web.UI.HtmlControls.HtmlAnchor
     
     '''<summary>
     '''liRegistVoter control.
@@ -39,6 +39,24 @@ Partial Public Class SitePSUOVS
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents liRegistVoter As Global.System.Web.UI.HtmlControls.HtmlAnchor
+    
+    '''<summary>
+    '''liResultElection control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents liResultElection As Global.System.Web.UI.HtmlControls.HtmlAnchor
+    
+    '''<summary>
+    '''liStatusElection control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents liStatusElection As Global.System.Web.UI.HtmlControls.HtmlAnchor
     
     '''<summary>
     '''MainContent control.

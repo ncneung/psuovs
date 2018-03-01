@@ -3,6 +3,8 @@
 #Region "การจัดการเลือกตั้ง"
     Function GetElection(electionID As Integer) As ElectionVote
     Function GetElectionForVote(ByVal electionID As Integer) As ElectionVote
+    Function GetDetailElectionForVote(ByVal psupassport As String) As List(Of ElectionVote)
+    Function checkElectionStatus(ByVal electionid As Integer) As ElectionVote
     'Function GetElections() As List(Of ElectionVote)
     'รายการเลือกตั้งที่ปรากฎรายชื่อของ ผู้มีสิทธิ์
     'Function GetElections(VoterID As String) As IEnumerable(Of Models.Election)

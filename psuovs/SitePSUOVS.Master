@@ -1,4 +1,4 @@
-﻿<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="SitePSUOVS.Master.vb" Inherits="PSUOVS.SitePSUOVS" %>
+﻿<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="SitePSUOVS.Master.vb" Inherits="PSUOVS.SitePSUOVS"  %>
 
 <%@ Import Namespace="PSUOVS" %>
 <%@ Import Namespace="Microsoft.AspNet.Identity" %>
@@ -63,15 +63,13 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <%--<li><a runat="server" href="~/Page/DebtUser.aspx">รายงานลูกหนี้คงค้าง</a></li>
-                        <li><a runat="server" href="~/Page/Usermanual.aspx">คู่มือการใช้งาน</a></li>
-                         <li><a runat="server" href="~/Page/DebtUnit.aspx">รายงานลูกหนี้คงค้างในหน่วยงาน</a></li>
-                        <li><a runat="server" href="~/Page/ManageUser.aspx">จัดการสิทธิ์ผู้ใช้</a></li>--%>
-                       <li><a runat="server" href="~/admission/ImportPayment.aspx" id="liCheckStatus" visible ="false">สถานะการเลือกตั้ง</a></li>
-                         <li><a runat="server" href="~/page/RegistedVoter.aspx" id="liRegistVoter" visible ="false">ลงทะเบียน</a></li>
-                      <%--  <li><a runat="server" href="~/admission/DeleteRegist.aspx" target="_blank">ลบข้อมูล</a></li>
-                        <li><a runat="server" href="~/admission/PrintRegist.aspx" target="_blank">พิมพ์ใบสมัคร</a></li>
-                        <li><a runat="server" href="~/admission/Billpayment.aspx" target="_blank">Billpayment</a></li>  --%>                     
+                       
+                       <li><a runat="server" href="~/page/MainCheckVoter.aspx" id="liCheckVoter" visible ="false">Check Voter</a></li>
+                        <li><a runat="server" href="~/page/MainRegistedVoter.aspx" id="liRegistVoter" visible ="false">Registed Voter</a></li>
+                        <li><a runat="server" href="~/page/MainResultElection.aspx" id="liResultElection" visible ="false">Result Election</a></li>
+                        <li><a runat="server" href="~/page/MainStatusElection.aspx" id="liStatusElection" visible ="false">Status Election</a></li>
+                         
+                                           
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>

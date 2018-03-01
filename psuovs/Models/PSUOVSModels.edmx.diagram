@@ -13,10 +13,9 @@
         <EntityTypeShape EntityType="PSUOVSModel.Gender" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PSUOVSModel.ManageRole" Width="1.5" PointX="10.25" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PSUOVSModel.ManageRoleStatus" Width="1.5" PointX="8" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="PSUOVSModel.MatchVoterBallots" Width="1.5" PointX="7.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSUOVSModel.MatchVoterBallots" Width="1.5" PointX="5.625" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PSUOVSModel.RegistedVoter" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PSUOVSModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PSUOVSModel.Voter" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="PSUOVSModel.VoteResult" Width="1.5" PointX="9.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PSUOVSModel.MatchElectionBallots" Width="1.5" PointX="7.5" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PSUOVSModel.V_Voter" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
@@ -30,7 +29,6 @@
         <AssociationConnector Association="PSUOVSModel.FK_MatchElectionBallots_ElectionVote" ManuallyRouted="false" />
         <AssociationConnector Association="PSUOVSModel.FK_RegistedVoter_ElectionVote" ManuallyRouted="false" />
         <AssociationConnector Association="PSUOVSModel.FK_ManageRole_ManageRoleStatus" ManuallyRouted="false" />
-        <AssociationConnector Association="PSUOVSModel.FK_MatchVoterBallots_Voter" ManuallyRouted="false" />
         <AssociationConnector Association="PSUOVSModel.FK_MatchVoterBallots_ElectionVote" />
         <EntityTypeShape EntityType="PSUOVSModel.ElectionType" Width="1.5" PointX="12.375" PointY="4.875" />
         <EntityTypeShape EntityType="PSUOVSModel.ReportFacVote" Width="1.5" PointX="14.625" PointY="0.875" />

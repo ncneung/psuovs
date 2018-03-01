@@ -10,6 +10,7 @@
     Function insertRegistedVoter(ByVal psupassport As String, ByVal electionID As Integer, ByVal registed As Boolean, ByVal RegistedDate As Date, ByVal RegistedBy As String) As RegistedVoter
     Function selectRegistedVoter(ByVal psupassport As String, ByVal electionID As Integer) As RegistedVoter
     Function countRegist(ByVal electionid As Integer) As List(Of RegistedVoter)
+    Function checkRegistTrue(ByVal psupassport As String, ByVal electionid As Integer) As RegistedVoter
 #End Region
 
 

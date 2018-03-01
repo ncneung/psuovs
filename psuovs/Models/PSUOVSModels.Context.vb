@@ -33,7 +33,6 @@ Partial Public Class PSUOVSEntities1
     Public Overridable Property MatchVoterBallots() As DbSet(Of MatchVoterBallots)
     Public Overridable Property RegistedVoter() As DbSet(Of RegistedVoter)
     Public Overridable Property sysdiagrams() As DbSet(Of sysdiagrams)
-    Public Overridable Property Voter() As DbSet(Of Voter)
     Public Overridable Property VoteResult() As DbSet(Of VoteResult)
     Public Overridable Property MatchElectionBallots() As DbSet(Of MatchElectionBallots)
     Public Overridable Property V_Voter() As DbSet(Of V_Voter)

@@ -7,11 +7,6 @@ Public Class RegistedVoterPage
     Dim intElecID As Integer = 1
     'Dim strUser As String = Context.User.Identity.Name 'รอใช้งาน
     Dim strUser As String = "noppachart.l"
-
-
-
-
-
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'Dim ts As IVoterManagement = New clsVoters
         'Dim tsde = ts.GetVoter(tbPassport.Text.ToLower())
@@ -128,7 +123,7 @@ Public Class RegistedVoterPage
         tempCellRowRDetail0H.Text = "ID"
         tempCellRowRDetail1H.Text = "Ballot(TH)"
         tempCellRowRDetail2H.Text = "Ballot(EN)"
-        tempCellRowRDetail3H.Text = "Status"
+        tempCellRowRDetail3H.Text = "Allow"
 
         tempRowRDetailH.Font.Bold = True
 
@@ -179,7 +174,8 @@ Public Class RegistedVoterPage
 
                     tempchkbox.ID = "chkbRegisted" & VoterRegisted(mv).AutoID
                     tempchkbox.Checked = True
-                    tempchkbox.Text = "Active"
+                    'tempchkbox.Text = "Active"
+                    tempCellRowRDetail3.HorizontalAlign = HorizontalAlign.Center
                     tempCellRowRDetail3.Controls.Add(tempchkbox)
 
 
@@ -195,7 +191,8 @@ Public Class RegistedVoterPage
             If bBallotID = False Then
                 tempchkbox.ID = "chkbRegisted" & BallotDetail(m).BallotsID
                 tempchkbox.Checked = False
-                tempchkbox.Text = "Not Active"
+                'tempchkbox.Text = "Not Active"
+                tempCellRowRDetail3.HorizontalAlign = HorizontalAlign.Center
                 tempCellRowRDetail3.Controls.Add(tempchkbox)
 
 

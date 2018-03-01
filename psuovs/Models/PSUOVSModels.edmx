@@ -167,12 +167,6 @@ warning 6002: The table/view 'PSUOVS.dbo.MatchElectionBallots' does not have a p
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="Voter">
-          <Key>
-            <PropertyRef Name="PSUPassport" />
-          </Key>
-          <Property Name="PSUPassport" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="VoteResult">
           <Key>
             <PropertyRef Name="AutoID" />
@@ -186,15 +180,12 @@ warning 6002: The table/view 'PSUOVS.dbo.MatchElectionBallots' does not have a p
 warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="V_Voter">
           <Key>
-            <PropertyRef Name="PSUPassport" />
-            <PropertyRef Name="BallotsID" />
             <PropertyRef Name="ElectionID" />
+            <PropertyRef Name="PSUPassport" />
           </Key>
-          <Property Name="PSUPassport" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="BallotsID" Type="int" Nullable="false" />
           <Property Name="ElectionID" Type="int" Nullable="false" />
-          <Property Name="Voted" Type="bit" />
-          <Property Name="VotedDate" Type="datetime" />
+          <Property Name="PSUPassport" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Registed" Type="bit" />
           <Property Name="SEX_CODE" Type="nvarchar" MaxLength="1" />
           <Property Name="FAC_ID" Type="nvarchar" MaxLength="2" />
           <Property Name="TITLE_ID" Type="nvarchar" MaxLength="2" />
@@ -326,18 +317,6 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MatchVoterBallots_Voter">
-          <End Role="Voter" Type="Self.Voter" Multiplicity="1" />
-          <End Role="MatchVoterBallots" Type="Self.MatchVoterBallots" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Voter">
-              <PropertyRef Name="PSUPassport" />
-            </Principal>
-            <Dependent Role="MatchVoterBallots">
-              <PropertyRef Name="PSUPassport" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RegistedVoter_ElectionVote">
           <End Role="ElectionVote" Type="Self.ElectionVote" Multiplicity="1" />
           <End Role="RegistedVoter" Type="Self.RegistedVoter" Multiplicity="*" />
@@ -389,7 +368,6 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
           <EntitySet Name="ReportFacVote" EntityType="Self.ReportFacVote" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportVote" EntityType="Self.ReportVote" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Voter" EntityType="Self.Voter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VoteResult" EntityType="Self.VoteResult" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MatchElectionBallots" EntityType="Self.MatchElectionBallots" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -403,11 +381,9 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
           </EntitySet>
           <EntitySet Name="V_Voter" EntityType="Self.V_Voter" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [V_Voter].[PSUPassport] AS [PSUPassport], 
-    [V_Voter].[BallotsID] AS [BallotsID], 
     [V_Voter].[ElectionID] AS [ElectionID], 
-    [V_Voter].[Voted] AS [Voted], 
-    [V_Voter].[VotedDate] AS [VotedDate], 
+    [V_Voter].[PSUPassport] AS [PSUPassport], 
+    [V_Voter].[Registed] AS [Registed], 
     [V_Voter].[SEX_CODE] AS [SEX_CODE], 
     [V_Voter].[FAC_ID] AS [FAC_ID], 
     [V_Voter].[TITLE_ID] AS [TITLE_ID], 
@@ -458,10 +434,6 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
           </AssociationSet>
           <AssociationSet Name="FK_MatchVoterBallots_ElectionVote" Association="Self.FK_MatchVoterBallots_ElectionVote">
             <End Role="ElectionVote" EntitySet="ElectionVote" />
-            <End Role="MatchVoterBallots" EntitySet="MatchVoterBallots" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MatchVoterBallots_Voter" Association="Self.FK_MatchVoterBallots_Voter">
-            <End Role="Voter" EntitySet="Voter" />
             <End Role="MatchVoterBallots" EntitySet="MatchVoterBallots" />
           </AssociationSet>
           <AssociationSet Name="FK_RegistedVoter_ElectionVote" Association="Self.FK_RegistedVoter_ElectionVote">
@@ -594,7 +566,6 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Ballots" Relationship="Self.FK_MatchVoterBallots_Ballots" FromRole="MatchVoterBallots" ToRole="Ballots" />
-          <NavigationProperty Name="Voter" Relationship="Self.FK_MatchVoterBallots_Voter" FromRole="MatchVoterBallots" ToRole="Voter" />
           <Property Name="ElectionID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ElectionVote" Relationship="PSUOVSModel.FK_MatchVoterBallots_ElectionVote" FromRole="MatchVoterBallots" ToRole="ElectionVote" />
           <Property Name="Voted" Type="Boolean" />
@@ -624,13 +595,6 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Voter">
-          <Key>
-            <PropertyRef Name="PSUPassport" />
-          </Key>
-          <Property Name="PSUPassport" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="MatchVoterBallots" Relationship="Self.FK_MatchVoterBallots_Voter" FromRole="Voter" ToRole="MatchVoterBallots" />
-        </EntityType>
         <EntityType Name="VoteResult">
           <Key>
             <PropertyRef Name="AutoID" />
@@ -658,7 +622,6 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
         <EntityType Name="V_Voter">
           <Key>
             <PropertyRef Name="PSUPassport" />
-            <PropertyRef Name="BallotsID" />
             <PropertyRef Name="ElectionID" />
           </Key>
           <Property Name="PSUPassport" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -672,10 +635,8 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
           <Property Name="FAC_NAME_THAI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SEX_NAME" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="FAC_NAME_ENG" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
-          <Property Name="BallotsID" Type="Int32" Nullable="false" />
           <Property Name="ElectionID" Type="Int32" Nullable="false" />
-          <Property Name="Voted" Type="Boolean" />
-          <Property Name="VotedDate" Type="DateTime" Precision="3" />
+          <Property Name="Registed" Type="Boolean" />
         </EntityType>
         <Association Name="FK_Ballots_ElectionVote">
           <End Role="ElectionVote" Type="Self.ElectionVote" Multiplicity="1" />
@@ -797,18 +758,6 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MatchVoterBallots_Voter">
-          <End Role="Voter" Type="Self.Voter" Multiplicity="1" />
-          <End Role="MatchVoterBallots" Type="Self.MatchVoterBallots" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Voter">
-              <PropertyRef Name="PSUPassport" />
-            </Principal>
-            <Dependent Role="MatchVoterBallots">
-              <PropertyRef Name="PSUPassport" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="PSUOVSEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Ballots" EntityType="Self.Ballots" />
           <EntitySet Name="Candidate" EntityType="Self.Candidate" />
@@ -821,7 +770,6 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
           <EntitySet Name="MatchVoterBallots" EntityType="Self.MatchVoterBallots" />
           <EntitySet Name="RegistedVoter" EntityType="Self.RegistedVoter" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Voter" EntityType="Self.Voter" />
           <EntitySet Name="VoteResult" EntityType="Self.VoteResult" />
           <EntitySet Name="MatchElectionBallots" EntityType="Self.MatchElectionBallots" />
           <EntitySet Name="V_Voter" EntityType="Self.V_Voter" />
@@ -864,10 +812,6 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
           <AssociationSet Name="FK_ManageRole_ManageRoleStatus" Association="Self.FK_ManageRole_ManageRoleStatus">
             <End Role="ManageRoleStatus" EntitySet="ManageRoleStatus" />
             <End Role="ManageRole" EntitySet="ManageRole" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MatchVoterBallots_Voter" Association="Self.FK_MatchVoterBallots_Voter">
-            <End Role="Voter" EntitySet="Voter" />
-            <End Role="MatchVoterBallots" EntitySet="MatchVoterBallots" />
           </AssociationSet>
           <AssociationSet Name="FK_MatchVoterBallots_ElectionVote" Association="PSUOVSModel.FK_MatchVoterBallots_ElectionVote">
             <End Role="ElectionVote" EntitySet="ElectionVote" />
@@ -1089,13 +1033,6 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Voter">
-            <EntityTypeMapping TypeName="PSUOVSModel.Voter">
-              <MappingFragment StoreEntitySet="Voter">
-                <ScalarProperty Name="PSUPassport" ColumnName="PSUPassport" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="VoteResult">
             <EntityTypeMapping TypeName="PSUOVSModel.VoteResult">
               <MappingFragment StoreEntitySet="VoteResult">
@@ -1121,10 +1058,8 @@ warning 6002: The table/view 'PSUOVS.dbo.V_Voter' does not have a primary key de
           <EntitySetMapping Name="V_Voter">
             <EntityTypeMapping TypeName="PSUOVSModel.V_Voter">
               <MappingFragment StoreEntitySet="V_Voter">
-                <ScalarProperty Name="VotedDate" ColumnName="VotedDate" />
-                <ScalarProperty Name="Voted" ColumnName="Voted" />
+                <ScalarProperty Name="Registed" ColumnName="Registed" />
                 <ScalarProperty Name="ElectionID" ColumnName="ElectionID" />
-                <ScalarProperty Name="BallotsID" ColumnName="BallotsID" />
                 <ScalarProperty Name="PSUPassport" ColumnName="PSUPassport" />
                 <ScalarProperty Name="SEX_CODE" ColumnName="SEX_CODE" />
                 <ScalarProperty Name="FAC_ID" ColumnName="FAC_ID" />

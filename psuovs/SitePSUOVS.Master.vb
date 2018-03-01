@@ -36,6 +36,7 @@
             ViewState(AntiXsrfTokenKey) = Page.ViewStateUserKey
             ViewState(AntiXsrfUserNameKey) = If(Context.User.Identity.Name, [String].Empty)
         Else
+            'Session("sPSUPassport") = Context.User.Identity.Name
             ' Validate the Anti-XSRF token
 
             'If DirectCast(ViewState(AntiXsrfTokenKey), String) <> _antiXsrfTokenValue OrElse DirectCast(ViewState(AntiXsrfUserNameKey), String) <> (If(Context.User.Identity.Name, [String].Empty)) Then
@@ -55,23 +56,38 @@
 
 
         End If
+        'Session("sPSUPassport") = Context.User.Identity.Name
+        Session("sPSUPassport") = "5735512073"
+        'Session("sPSUPassport") = "noppachart.l"
+        If Session("sPSUPassport") <> "" Then
+            Dim classRole As IRoleManageMent = New clsRole
+            If classRole.CheckRole(Session("sPSUPassport"), "president") IsNot Nothing Then
+                liCheckVoter.Visible = True
+                liRegistVoter.Visible = True
+                liResultElection.Visible = True
+                liStatusElection.Visible = True
+            ElseIf classRole.CheckRole(Session("sPSUPassport"), "it") IsNot Nothing Then
+                liCheckVoter.Visible = True
+                liRegistVoter.Visible = True
+                liResultElection.Visible = True
+                'liStatusElection.Visible = True
+            ElseIf classRole.CheckRole(Session("sPSUPassport"), "staff") IsNot Nothing Then
+                liCheckVoter.Visible = True
+                liRegistVoter.Visible = True
+                liResultElection.Visible = True
+            Else
+                liCheckVoter.Visible = False
+                liRegistVoter.Visible = False
+                liResultElection.Visible = True
+                liStatusElection.Visible = False
+            End If
 
-        'เก็บไว้ก่อนไว้ค่อยทำเช็คสิทธิ์ที่จะเห็นแต่ละ หน้า 09/02/2561
-        'Dim classVoter As New clsVoterBK
-        'Dim classRole As New clsRole
-        'Dim strPSUPassport As String = Context.User.Identity.Name
-        'If classRole.CheckRole(strPSUPassport, 1) = True Then
-        '    liCheckStatus.Visible = True
-        '    liRegistVoter.Visible = True
+        Else
+                Response.Redirect("Login_Main.aspx")
 
-        'ElseIf classRole.CheckRole(strPSUPassport, 2) = True Then
-        '    liCheckStatus.Visible = True
-        '    liRegistVoter.Visible = True
-        'ElseIf classRole.CheckRole(strPSUPassport, 3) = True Then
-        '    liCheckStatus.Visible = False
-        '    liRegistVoter.Visible = True
+        End If
 
-        'End If
+
 
     End Sub
 
